@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": { 
+      "*": [
+        "types/*"
+      ]
+    },
+    "target": "es6",
+    "allowJs": true,
+    "experimentalDecorators": true,
+    "strict": true,
+    "module": "commonjs",
+    "moduleResolution": "node"
+  },
+  "include": [
+    "types/**/*",
+    "src/**/*",
+    "example/**/*",
+    "document/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
