@@ -1,0 +1,33 @@
+{
+  "name": "@lin-ui-vue/cli",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "dev": "tsc --watch"
+  },
+  "bin": {
+    "lin-ui-cli": "./lib/index.js"
+  },
+  "files": [
+    "lib",
+    "tsconfig.json"
+  ],
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^17.0.41",
+    "typescript": "^4.7.3",
+    "vue-tsc": "^0.34.7"
+  },
+  "dependencies": {
+    "@vitejs/plugin-vue": "^2.3.3",
+    "commander": "^9.3.0",
+    "fs-extra": "^10.1.0",
+    "inquirer": "^8.2.4",
+    "semver": "^7.3.7",
+    "vite": "^2.9.9",
+    "vue": "^3.2.25"
+    
+  }
+}
