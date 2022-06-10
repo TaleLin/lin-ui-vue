@@ -45,7 +45,7 @@ var plugin_vue_1 = __importDefault(require("@vitejs/plugin-vue"));
 var path_1 = __importDefault(require("path"));
 var server;
 var viteConfig = {
-    root: path_1.default.resolve(__dirname, '../../site'),
+    root: path_1.default.resolve(__dirname, '../../../ui/site'),
     // configFile: false,
     plugins: [(0, plugin_vue_1.default)()],
     server: { force: true, port: 9527 },

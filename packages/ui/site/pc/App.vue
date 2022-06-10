@@ -1,5 +1,7 @@
 <template>
-  <h1>111sssss</h1>
+  <div>
+    <router-view />
+  </div>
 </template>
 
 <script lang="ts">
@@ -18,3 +20,9 @@ export default defineComponent({
   }
 })
 </script>
+<style lang="css">
+html,body {
+  margin: 0;
+  padding: 0;
+}
+</style>

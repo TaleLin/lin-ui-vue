@@ -6,7 +6,8 @@
     "dev": "lin-ui-cli dev"
   },
   "dependencies": {
-    "vue": "^3.2.25"
+    "vue": "^3.2.25",
+    "vue-router": "^4.0.16"
   },
   "devDependencies": {
     "@lin-ui-vue/cli": "workspace:^1.0.0",

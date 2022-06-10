@@ -6,7 +6,7 @@ import path from 'path'
 let server:ViteDevServer;
 
 const viteConfig = {
-  root: path.resolve(__dirname, '../../site'),
+  root: path.resolve(__dirname, '../../../ui/site'),
   // configFile: false,
   plugins: [vue()],
   server: { force: true, port: 9527 },
