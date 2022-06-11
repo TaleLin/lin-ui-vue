@@ -7,7 +7,13 @@ const router = createRouter({
     {
       path: '/',
       component: import('../components/AppLayout.vue'),
-      children: []
+      children: [
+        {
+          path: '/button',
+          component: import('../../../src/button/docs/README.md'),
+          children: []
+        }
+      ]
     }
   ],
 })

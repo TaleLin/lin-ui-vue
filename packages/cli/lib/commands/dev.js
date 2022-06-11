@@ -43,11 +43,17 @@ exports.dev = void 0;
 var vite_1 = require("vite");
 var plugin_vue_1 = __importDefault(require("@vitejs/plugin-vue"));
 var path_1 = __importDefault(require("path"));
+var markdown_to_vue_1 = __importDefault(require("@lin-ui-vue/markdown-to-vue"));
 var server;
 var viteConfig = {
     root: path_1.default.resolve(__dirname, '../../../ui/site'),
     // configFile: false,
-    plugins: [(0, plugin_vue_1.default)()],
+    plugins: [
+        (0, plugin_vue_1.default)({
+            include: [/\.vue$/, /\.md$/],
+        }),
+        (0, markdown_to_vue_1.default)()
+    ],
     server: { force: true, port: 9527 },
 };
 function startServer() {

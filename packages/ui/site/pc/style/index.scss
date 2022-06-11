@@ -1,0 +1,15 @@
+.h1-icon {
+  padding-left: 30px;
+  position: relative;
+  &::after {
+    content: " ";
+    display: block;
+    width: 30px;
+    height: 30px;
+    background-image: url(../assets/images/h1-Icon.jpg);
+    position: absolute;
+    top: 50%;
+    left: 0;
+    margin-top: -15px;
+  }
+}

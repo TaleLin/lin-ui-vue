@@ -2,13 +2,19 @@
 import { createServer, ViteDevServer }from 'vite';
 import vue from '@vitejs/plugin-vue';
 import path from 'path'
+import md from '@lin-ui-vue/markdown-to-vue'
 
 let server:ViteDevServer;
 
 const viteConfig = {
   root: path.resolve(__dirname, '../../../ui/site'),
   // configFile: false,
-  plugins: [vue()],
+  plugins: [
+    vue({
+      include: [/\.vue$/, /\.md$/],
+    }),
+    md()
+  ],
   server: { force: true, port: 9527 },
 };
 
