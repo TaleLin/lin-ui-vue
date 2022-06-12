@@ -15,3 +15,57 @@
     margin-top: -15px;
   }
 }
+
+blockquote {
+  font-size: 1rem;
+  color: #999;
+  border-left: 4px solid #dfe2e5;
+  margin-left: 0;
+  padding-left: 12px;
+}
+
+.lin-doc-card {
+  margin-top: 20px;
+  h3 {
+    border-bottom: 1px solid #eaecef;
+    line-height: 30px;
+    padding-bottom: 5px;
+    color: #45526b;
+    font-size: 24px;
+    font-weight: 500;
+  }
+  code {
+    color: #3683d6;
+    background: #e4f1ff;
+    padding: 0 4px;
+    font-size: 14px;
+    line-height: 14px;
+    margin: 0 4px;
+  }
+}
+
+.custom-block{
+  margin: 20px 0;
+  border-left-width: 4px;
+  border-left-style: solid;
+  padding: 0 30px;
+  .custom-block-title {
+    padding: 14px 0;
+    font-weight: lighter;
+  }
+  .custom-block-content {
+    padding-bottom: 14px;
+  }
+  &.warning {
+    background: rgba(255,229,100,.3);
+    border-color: #e7c000;
+  }
+  &.info {
+    background: #eff7ff;
+    border-color: #3683d6;
+  }
+  &.error {
+    background: #FEF4F4;
+    border-color: #f4506c;
+  }
+}

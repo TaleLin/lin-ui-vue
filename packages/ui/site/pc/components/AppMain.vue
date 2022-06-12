@@ -14,5 +14,6 @@ export default defineComponent({
 .app-main {
   min-width: 600px;
   flex: 1;
+  padding: 0 40px;
 }
 </style>

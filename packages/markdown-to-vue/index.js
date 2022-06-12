@@ -9,13 +9,13 @@ function splitCard(html) {
     .reduce(
       (prev, fragment) => {
         return [...prev,...(fragment
-                .replaceAll('<p>::: warning', '@@tips@@<div class="warning">')
-                .replace('<p>::: error', '@@tips@@<div class="error">')
-                .replace('<p>::: info', '@@tips@@<div class="info">')
-                .replaceAll(':::</p>','</div>').split('@@tips@@'))]
+                .replaceAll('<p>::: warning', '@@tips@@<div class="custom-block warning"><div class="custom-block-title">警告</div><div class="custom-block-content">')
+                .replaceAll('<p>::: error', '@@tips@@<div class="custom-block error"><div class="custom-block-title">错误</div><div class="custom-block-content">')
+                .replaceAll('<p>::: info', '@@tips@@<div class="custom-block info"><div class="custom-block-title">提示</div><div class="custom-block-content">')
+                .replaceAll(':::</p>','</div></div>').split('@@tips@@'))]
                 
       }, [])
-    .map((fragment) => (fragment.includes('<h3') ? `<div class="card">${fragment}</div>` : fragment))
+    .map((fragment) => (fragment.includes('<h3') ? `<div class="lin-doc-card">${fragment}</div>` : fragment))
     .join('')
 
   return cardGroup

@@ -1,36 +1,39 @@
-.hljs {
-  display: block;
-  overflow-x: auto;
-  background: #e9f0f8;
-  border-radius: 6px;
+.lin-ui-doc {
+  .hljs {
+    display: block;
+    overflow-x: auto;
+    background: #e9f0f8;
+    border-radius: 6px;
+  }
+  
+  .hljs code {
+    padding: 10px 20px;
+    display: block;
+    font-size: 14px;
+    color: #333;
+    line-height: 30px;
+  }
+  
+  .hljs-tag {
+    color: #6a46d1
+  }
+  
+  .hljs-attr {
+    color: #6a46d1
+  }
+  
+  .hljs-string {
+    color: #7ec699;
+  }
+  
+  
+  .hljs-keyword {
+    color: #6a46d1;
+    font-style: italic
+  }
+  
+  .hljs-function {
+    color: #333
+  }
 }
 
-.hljs code {
-  padding: 10px 20px;
-  display: block;
-  font-size: 14px;
-  color: #333;
-  line-height: 30px;
-}
-
-.hljs-tag {
-  color: #6a46d1
-}
-
-.hljs-attr {
-  color: #6a46d1
-}
-
-.hljs-string {
-  color: #7ec699;
-}
-
-
-.hljs-keyword {
-  color: #6a46d1;
-  font-style: italic
-}
-
-.hljs-function {
-  color: #333
-}

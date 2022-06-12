@@ -7,22 +7,13 @@ routePath: '/button'
 ---
 
 # 按钮
+Lin UI 致力于给小程序开发者提供愉悦的开发体验。
 
-### 介绍
-
-按钮组件，用于触发操作
-
-::: warning
-WARNING 2222
-:::
-
-::: error
-WARNING 2222
-:::
-
-1112
+> 常用的操作按钮
 
 ### 主题色按钮
+
+通过设置`type`属性为`default`、success、error、warning来创建不同样式的Button，样式默认为default。
 
 ```html
 <template>
@@ -36,11 +27,15 @@ WARNING 2222
 ```
 
 ::: warning
-警告！ **使用 Lin UI 务必勾选`Es6 转 ES5`和`使用 npm 模块`选项**
+**使用 Lin UI 务必勾选`Es6 转 ES5`和`使用 npm 模块`选项**
+:::
+
+::: error
+  友情提示
+  WARNING 2222
 :::
 
 ::: info
-WARNING 2222
+  友情提示
+  WARNING 2222
 :::
-
-nin
