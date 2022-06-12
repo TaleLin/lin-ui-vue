@@ -1,0 +1,30 @@
+{
+  "入门": [
+    {
+      "title": "事件",
+      "order": 1,
+      "routePath": "/event",
+      "parent": "入门"
+    },
+    {
+      "title": "快速开始",
+      "order": 2,
+      "routePath": "/start",
+      "parent": "入门"
+    },
+    {
+      "title": "常见问题",
+      "order": 3,
+      "routePath": "/question",
+      "parent": "入门"
+    }
+  ],
+  "基础": [
+    {
+      "title": "按钮 Button",
+      "order": 1,
+      "routePath": "/button",
+      "parent": "基础"
+    }
+  ]
+}

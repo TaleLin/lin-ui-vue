@@ -1,4 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
+import routes from '../route'
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -8,11 +9,7 @@ const router = createRouter({
       path: '/',
       component: import('../components/AppLayout.vue'),
       children: [
-        {
-          path: '/button',
-          component: import('../../../src/button/docs/README.md'),
-          children: []
-        }
+        ...routes,
       ]
     }
   ],

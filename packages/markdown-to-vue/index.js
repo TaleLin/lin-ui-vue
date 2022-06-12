@@ -1,6 +1,7 @@
 
 const markdown = require('markdown-it')
 const hljs = require('highlight.js')
+const matter = require('gray-matter');
 
 function splitCard(html) {
   const hGroup = html.replace(/<h1/g, '<h1 class="h1-icon"').replace(/<h3/g, '@@lin@@<h3').replace(/<h2/g, '@@lin@@<h2').split('@@lin@@')
@@ -32,25 +33,16 @@ function highlight(str, lang) {
   return ''
 }
 
-function markdownToVue(source, options) {
-  // const { source: vueSource, imports, components } = extractComponents(source)
+function markdownToVue(source, id, options) {
+  const {data, content: contentSource} = matter(source)
   const md = markdown({
     html: true,
     typographer: true,
     highlight
   })
-  let res = md.render(source);
+  let res = md.render(contentSource);
 
   let templateString = splitCard(res)
-  // console.log(templateString)
-  // const { source: vueSource, imports, components } = extractComponents(source)
-  // const md = markdown({
-  //   html: true,
-  //   typographer: true,
-  // })
-  // let templateString = htmlWrapper(md.render(vueSource))
-  // templateString = templateString.replace(/process.env/g, '<span>process.env</span>')
-  // templateString = injectCodeExample(templateString)
 
   return `
 <template><div class="lin-ui-doc">${templateString}</div></template>
@@ -73,9 +65,8 @@ function MarkdownVitePlugin(options) {
       if(!/\.md$/.test(id)) {
         return
       }
-
       try {
-        return markdownToVue(source, options)
+        return markdownToVue(source, id, options)
       } catch (e) {
         this.error(e)
         return ''
@@ -86,7 +77,7 @@ function MarkdownVitePlugin(options) {
 
       const readSource = ctx.read
       ctx.read = async function () {
-        return markdownToVue(await readSource(), options)
+        return markdownToVue(await readSource(), id, options)
       }
     },
   }

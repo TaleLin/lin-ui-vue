@@ -1,3 +1,11 @@
+---
+title: 按钮 Button
+level: 2
+order: 1
+parent: 基础
+routePath: '/button'
+---
+
 # 按钮
 
 ### 介绍
