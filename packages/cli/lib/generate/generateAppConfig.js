@@ -182,3 +182,6 @@ function generateAppConfig() {
     });
 }
 exports.generateAppConfig = generateAppConfig;
+var str = '/Users/daipengpeng/works/Lin/lin-ui-vue/packages/ui/site/:::warning/Question:::';
+var a = str.match(/\/:::warning\/([-\w]+)\:::/);
+console.log(a);

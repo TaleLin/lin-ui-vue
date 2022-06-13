@@ -46,11 +46,13 @@ importers:
       gray-matter: ^4.0.3
       highlight.js: ^11.5.1
       markdown-it: ^13.0.1
+      markdown-it-container: ^3.0.0
     dependencies:
       fs-extra: 10.1.0
       gray-matter: 4.0.3
       highlight.js: 11.5.1
       markdown-it: 13.0.1
+      markdown-it-container: 3.0.0
 
   packages/ui:
     specifiers:
@@ -840,6 +842,10 @@ packages:
     resolution: {integrity: sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ==}
     dependencies:
       sourcemap-codec: 1.4.8
+
+  /markdown-it-container/3.0.0:
+    resolution: {integrity: sha512-y6oKTq4BB9OQuY/KLfk/O3ysFhB3IMYoIWhGJEidXt1NQFocFK2sA2t0NYZAMyMShAGL6x5OPIbrmXPIqaN9rw==}
+    dev: false
 
   /markdown-it/13.0.1:
     resolution: {integrity: sha512-lTlxriVoy2criHP0JKRhO2VDG9c2ypWCsT237eDiLqi09rmbKoUetyGHq2uOIRoRS//kfoJckS0eUzzkDR+k2Q==}

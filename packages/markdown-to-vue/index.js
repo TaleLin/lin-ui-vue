@@ -1,20 +1,12 @@
 
 const markdown = require('markdown-it')
+const markdownContainer = require('markdown-it-container')
 const hljs = require('highlight.js')
 const matter = require('gray-matter');
 
 function splitCard(html) {
   const hGroup = html.replace(/<h1/g, '<h1 class="h1-icon"').replace(/<h3/g, '@@lin@@<h3').replace(/<h2/g, '@@lin@@<h2').split('@@lin@@')
   const cardGroup = hGroup
-    .reduce(
-      (prev, fragment) => {
-        return [...prev,...(fragment
-                .replaceAll('<p>::: warning', '@@tips@@<div class="custom-block warning"><div class="custom-block-title">警告</div><div class="custom-block-content">')
-                .replaceAll('<p>::: error', '@@tips@@<div class="custom-block error"><div class="custom-block-title">错误</div><div class="custom-block-content">')
-                .replaceAll('<p>::: info', '@@tips@@<div class="custom-block info"><div class="custom-block-title">提示</div><div class="custom-block-content">')
-                .replaceAll(':::</p>','</div></div>').split('@@tips@@'))]
-                
-      }, [])
     .map((fragment) => (fragment.includes('<h3') ? `<div class="lin-doc-card">${fragment}</div>` : fragment))
     .join('')
 
@@ -40,6 +32,31 @@ function markdownToVue(source, id, options) {
     typographer: true,
     highlight
   })
+  const customBlock = ['info','error', 'warning', 'tips']
+  const defaultCustomBlockTitle = {
+    info: '消息',
+    error: '错误',
+    warning: '警告',
+    tips: '提示'
+  }
+  customBlock.forEach(item => {
+    md.use(markdownContainer, item,  {
+      render: function (tokens, idx) {
+        const reg = new RegExp(`^${item}\\s+(.*)$`)
+        var m = tokens[idx].info.trim().match(reg) || [, defaultCustomBlockTitle[item]];
+        
+        if (tokens[idx].nesting === 1) {
+          return `<div class="custom-block ${item}">`+
+                    '<div class="custom-block-title">' + md.utils.escapeHtml(m[1]) + 
+                  '</div><div class="custom-block-content">\n';
+        }
+        else {
+          return '</div></div>\n';
+        }
+      }
+    })
+  })
+
   let res = md.render(contentSource);
 
   let templateString = splitCard(res)

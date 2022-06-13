@@ -60,9 +60,13 @@ blockquote {
     background: rgba(255,229,100,.3);
     border-color: #e7c000;
   }
-  &.info {
+  &.tips {
     background: #eff7ff;
     border-color: #3683d6;
+  }
+  &.info {
+    background: #f4f4f5;
+    border-color: #909399;
   }
   &.error {
     background: #FEF4F4;

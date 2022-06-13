@@ -25,13 +25,11 @@ Lin UI 致力于给小程序开发者提供愉悦的开发体验。
   </div>
 </template>
 ```
-
 ::: warning
 **使用 Lin UI 务必勾选`Es6 转 ES5`和`使用 npm 模块`选项**
 :::
 
 ::: error
-  友情提示
   WARNING 2222
 :::
 

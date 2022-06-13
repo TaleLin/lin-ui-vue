@@ -118,3 +118,10 @@ export async function generateAppConfig() {
   generateAppMenu([...baseDoc, ...componentsDoc])
 
 }
+
+
+
+let str = '/Users/daipengpeng/works/Lin/lin-ui-vue/packages/ui/site/:::warning/Question:::'
+
+let a = str.match(/\/:::warning\/([-\w]+)\:::/)
+console.log(a)
