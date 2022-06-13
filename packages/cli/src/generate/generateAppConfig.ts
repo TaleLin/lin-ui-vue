@@ -79,6 +79,28 @@ function generateAppRoutes(baseDoc: string[], componentsDoc: string[]) {
   fs.outputFileSync(configPath, source)
 }
 
+function generateMobileRoutes() {
+
+  const dirs = fs.readdirSync(resolve(process.cwd(), 'src'))
+
+  const componentDocsRoutes = dirs.map(
+    (dir) => {
+      const path = resolve(process.cwd(), `src/${dir}/example/index.vue`)
+      return `
+  {
+    path: '/${dir}',
+    component: () => import('${path}')
+  }`
+    }
+  )
+
+  const source = `export default [\
+    ${componentDocsRoutes}
+]`
+  const configPath = resolve(process.cwd(), 'site/mobile/route.ts')
+  fs.outputFileSync(configPath, source)
+}
+
 function formatMenuGroup(list: any[]) {
   const menuGroup: Record<string, any[]> = {}
   for(let i = 0; i < list.length; i++) {
@@ -116,12 +138,6 @@ export async function generateAppConfig() {
 
   generateAppRoutes(baseDoc, componentsDoc)
   generateAppMenu([...baseDoc, ...componentsDoc])
+  generateMobileRoutes()
 
 }
-
-
-
-let str = '/Users/daipengpeng/works/Lin/lin-ui-vue/packages/ui/site/:::warning/Question:::'
-
-let a = str.match(/\/:::warning\/([-\w]+)\:::/)
-console.log(a)

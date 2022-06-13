@@ -45,6 +45,7 @@ var plugin_vue_1 = __importDefault(require("@vitejs/plugin-vue"));
 var path_1 = __importDefault(require("path"));
 var markdown_to_vue_1 = __importDefault(require("@lin-ui-vue/markdown-to-vue"));
 var generateAppConfig_1 = require("../generate/generateAppConfig");
+var generateEntry_1 = require("../generate/generateEntry");
 var server;
 var viteConfig = {
     root: path_1.default.resolve(__dirname, '../../../ui/site'),
@@ -74,11 +75,14 @@ function startServer() {
                     return [4 /*yield*/, (0, generateAppConfig_1.generateAppConfig)()];
                 case 3:
                     _b.sent();
-                    return [4 /*yield*/, (0, vite_1.createServer)(viteConfig)];
+                    return [4 /*yield*/, (0, generateEntry_1.generateEntry)()];
                 case 4:
+                    _b.sent();
+                    return [4 /*yield*/, (0, vite_1.createServer)(viteConfig)];
+                case 5:
                     server = _b.sent();
                     return [4 /*yield*/, server.listen()];
-                case 5:
+                case 6:
                     _b.sent();
                     server.printUrls();
                     return [2 /*return*/];

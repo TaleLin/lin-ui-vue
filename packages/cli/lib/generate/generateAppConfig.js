@@ -132,6 +132,16 @@ function generateAppRoutes(baseDoc, componentsDoc) {
     var configPath = (0, path_1.resolve)(process.cwd(), 'site/pc/route.ts');
     fs_extra_1.default.outputFileSync(configPath, source);
 }
+function generateMobileRoutes() {
+    var dirs = fs_extra_1.default.readdirSync((0, path_1.resolve)(process.cwd(), 'src'));
+    var componentDocsRoutes = dirs.map(function (dir) {
+        var path = (0, path_1.resolve)(process.cwd(), "src/".concat(dir, "/example/index.vue"));
+        return "\n  {\n    path: '/".concat(dir, "',\n    component: () => import('").concat(path, "')\n  }");
+    });
+    var source = "export default [    ".concat(componentDocsRoutes, "\n]");
+    var configPath = (0, path_1.resolve)(process.cwd(), 'site/mobile/route.ts');
+    fs_extra_1.default.outputFileSync(configPath, source);
+}
 function formatMenuGroup(list) {
     var menuGroup = {};
     for (var i = 0; i < list.length; i++) {
@@ -176,12 +186,10 @@ function generateAppConfig() {
                     componentsDoc = _a.sent();
                     generateAppRoutes(baseDoc, componentsDoc);
                     generateAppMenu(__spreadArray(__spreadArray([], __read(baseDoc), false), __read(componentsDoc), false));
+                    generateMobileRoutes();
                     return [2 /*return*/];
             }
         });
     });
 }
 exports.generateAppConfig = generateAppConfig;
-var str = '/Users/daipengpeng/works/Lin/lin-ui-vue/packages/ui/site/:::warning/Question:::';
-var a = str.match(/\/:::warning\/([-\w]+)\:::/);
-console.log(a);

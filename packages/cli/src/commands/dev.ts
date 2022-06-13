@@ -4,6 +4,7 @@ import vue from '@vitejs/plugin-vue';
 import path from 'path'
 import md from '@lin-ui-vue/markdown-to-vue'
 import { generateAppConfig } from '../generate/generateAppConfig'
+import { generateEntry } from '../generate/generateEntry'
 
 let server:ViteDevServer;
 
@@ -23,6 +24,7 @@ async function startServer() {
   server && (await server.close());
 
   await generateAppConfig()
+  await generateEntry()
 
   server = await createServer(viteConfig);
 
