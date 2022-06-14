@@ -1,6 +1,6 @@
 {
   "name": "@lin-ui-vue/cli",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "scripts": {
     "dev": "tsc --watch"
@@ -23,7 +23,7 @@
     "vue-tsc": "^0.34.7"
   },
   "dependencies": {
-    "@lin-ui-vue/markdown-to-vue": "workspace:^1.0.0",
+    "@lin-ui-vue/markdown-to-vue": "workspace:*",
     "@vitejs/plugin-vue": "^2.3.3",
     "commander": "^9.3.0",
     "fs-extra": "^10.1.0",

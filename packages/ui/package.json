@@ -1,7 +1,7 @@
 {
   "name": "@lin-ui-vue/ui",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "dev": "lin-ui-cli dev"
   },
@@ -10,7 +10,7 @@
     "vue-router": "^4.0.16"
   },
   "devDependencies": {
-    "@lin-ui-vue/cli": "workspace:^1.0.0",
+    "@lin-ui-vue/cli": "workspace:*",
     "@vitejs/plugin-vue": "^2.3.3",
     "less": "^4.1.3",
     "sass": "^1.52.3",
