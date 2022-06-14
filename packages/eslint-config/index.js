@@ -4,6 +4,7 @@ module.exports = {
     es2021: true,
     node: true,
   },
+  parser: 'vue-eslint-parser',
   extends: [
     'plugin:vue/vue3-recommended',
     'airbnb-base',
@@ -14,6 +15,7 @@ module.exports = {
     ecmaVersion: 'latest',
     parser: '@typescript-eslint/parser',
     sourceType: 'module',
+    extraFileExtensions: ['.vue'],
   },
   plugins: ['@typescript-eslint', 'prettier'],
   rules: {
@@ -23,5 +25,6 @@ module.exports = {
     'import/no-unresolved': 'off',
     'no-unused-expressions': 'off',
     '@typescript-eslint/no-var-requires': 'off',
+    'vue/multi-word-component-names': 'off',
   },
 }

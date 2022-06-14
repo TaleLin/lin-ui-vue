@@ -1,5 +1,5 @@
 <template>
-  <button 
+  <button
     :class="
       computedClasses(
         b(),
@@ -8,7 +8,8 @@
         [text, b(`--text`)],
         [disabled, b(`--disabled`)]
       )
-    ">
+    "
+  >
     <div>
       <slot />
     </div>
@@ -16,25 +17,24 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue'
 import { createComponentName, createNamespace } from '../../utils/components'
-import { defineComponent } from "vue";
 import { props } from './props'
 
-const {b, computedClasses} = createNamespace('button')
+const { b, computedClasses } = createNamespace('button')
 
 export default defineComponent({
   name: createComponentName('Button'),
   props,
   setup() {
-
     return {
       b,
-      computedClasses
+      computedClasses,
     }
-  }
+  },
 })
 </script>
 
 <style lang="less">
-@import "./button.less";
+@import './button.less';
 </style>
