@@ -1,4 +1,3 @@
-
 import fs from 'fs-extra'
 import path from 'path'
 import { bigCamel } from '../utils/index'
@@ -7,12 +6,12 @@ export function generateEntry() {
   const importComponents: string[] = []
   const components: string[] = []
   const dirs = fs.readdirSync(path.resolve(process.cwd(), 'src'))
-  dirs.forEach(dir => {
+  dirs.forEach((dir) => {
     const componentName = bigCamel(dir)
     components.push(componentName)
     importComponents.push(`import ${componentName} from './src/${dir}/index'`)
   })
-  
+
   const componentsArr = `
 const components = [
   ${components.join('\n')}
@@ -34,6 +33,9 @@ export default {
   ${components.join(',\n')}
 }`
 
-  fs.writeFileSync(path.resolve(process.cwd(), 'index.ts'), entryContent, 'utf-8')
-
+  fs.writeFileSync(
+    path.resolve(process.cwd(), 'index.ts'),
+    entryContent,
+    'utf-8'
+  )
 }

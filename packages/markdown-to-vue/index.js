@@ -1,65 +1,73 @@
-
 const markdown = require('markdown-it')
 const markdownContainer = require('markdown-it-container')
 const hljs = require('highlight.js')
-const matter = require('gray-matter');
+const matter = require('gray-matter')
 
 function splitCard(html) {
-  const hGroup = html.replace(/<h1/g, '<h1 class="h1-icon"').replace(/<h3/g, '@@lin@@<h3').replace(/<h2/g, '@@lin@@<h2').split('@@lin@@')
+  const hGroup = html
+    .replace(/<h1/g, '<h1 class="h1-icon"')
+    .replace(/<h3/g, '@@lin@@<h3')
+    .replace(/<h2/g, '@@lin@@<h2')
+    .split('@@lin@@')
   const cardGroup = hGroup
-    .map((fragment) => (fragment.includes('<h3') ? `<div class="lin-doc-card">${fragment}</div>` : fragment))
+    .map((fragment) =>
+      fragment.includes('<h3')
+        ? `<div class="lin-doc-card">${fragment}</div>`
+        : fragment
+    )
     .join('')
 
-  return cardGroup
-          .replace(/<code>/g, '<code v-pre>')
+  return cardGroup.replace(/<code>/g, '<code v-pre>')
 }
 
 function highlight(str, lang) {
   if (lang && hljs.getLanguage(lang)) {
-    return (
-      '<pre class="hljs"><code>' +
-      hljs.highlight(str, { language: lang, ignoreIllegals: true }).value +
-      '</code></pre>'
-    )
+    return `<pre class="hljs"><code>${
+      hljs.highlight(str, { language: lang, ignoreIllegals: true }).value
+    }</code></pre>`
   }
   return ''
 }
 
 function markdownToVue(source, id, options) {
-  const {data, content: contentSource} = matter(source)
+  const { data, content: contentSource } = matter(source)
   const md = markdown({
     html: true,
     typographer: true,
-    highlight
+    highlight,
   })
-  const customBlock = ['info','error', 'warning', 'tips']
+  const customBlock = ['info', 'error', 'warning', 'tips']
   const defaultCustomBlockTitle = {
     info: '消息',
     error: '错误',
     warning: '警告',
-    tips: '提示'
+    tips: '提示',
   }
-  customBlock.forEach(item => {
-    md.use(markdownContainer, item,  {
-      render: function (tokens, idx) {
+  customBlock.forEach((item) => {
+    md.use(markdownContainer, item, {
+      render(tokens, idx) {
         const reg = new RegExp(`^${item}\\s+(.*)$`)
-        var m = tokens[idx].info.trim().match(reg) || [, defaultCustomBlockTitle[item]];
-        
+        const m = tokens[idx].info.trim().match(reg) || [
+          null,
+          defaultCustomBlockTitle[item],
+        ]
+
         if (tokens[idx].nesting === 1) {
-          return `<div class="custom-block ${item}">`+
-                    '<div class="custom-block-title">' + md.utils.escapeHtml(m[1]) + 
-                  '</div><div class="custom-block-content">\n';
+          return (
+            `<div class="custom-block ${item}">` +
+            `<div class="custom-block-title">${md.utils.escapeHtml(
+              m[1]
+            )}</div><div class="custom-block-content">\n`
+          )
         }
-        else {
-          return '</div></div>\n';
-        }
-      }
+        return '</div></div>\n'
+      },
     })
   })
 
-  let res = md.render(contentSource);
+  const res = md.render(contentSource)
 
-  let templateString = splitCard(res)
+  const templateString = splitCard(res)
 
   return `
 <template><div class="lin-ui-doc">${templateString}</div></template>
@@ -73,13 +81,12 @@ export default {
   `
 }
 
-
 function MarkdownVitePlugin(options) {
   return {
     name: 'lin-markdown-to-vue-vite-plugin',
     enforce: 'pre',
     transform(source, id) {
-      if(!/\.md$/.test(id)) {
+      if (!/\.md$/.test(id)) {
         return
       }
       try {

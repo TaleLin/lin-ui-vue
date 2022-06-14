@@ -1,11 +1,12 @@
-import globSync from '../utils/glob'
-import {resolve} from 'path'
-import matter from 'gray-matter';
+import { resolve } from 'path'
+import matter from 'gray-matter'
 import fs from 'fs-extra'
+import globSync from '../utils/glob'
+
+const a = 1
 
 const baseDoc = resolve(process.cwd(), 'site/docs')
 const componentsDoc = resolve(process.cwd(), 'src')
-
 
 export async function getBaseDoc() {
   const files = await globSync(`${baseDoc}/*.md`)
@@ -22,17 +23,17 @@ export async function getComponentsDoc() {
 function getRouteConfig(docPath: string) {
   const docContent = fs.readFileSync(docPath).toString()
   const { data } = matter(docContent)
-  let routePath = data.routePath
-  if(!routePath) {
+  let { routePath } = data
+  if (!routePath) {
     const [, _] = docPath.match(/\/docs\/([-\w]+)\.md/) || []
     routePath = `/${_}`
   }
-  
+
   return {
     path: `${routePath.toLowerCase()}`,
     meta: {
-      parent: data.parent
-    }
+      parent: data.parent,
+    },
   }
 }
 
@@ -43,10 +44,9 @@ function getMenuConfig(docPath: string) {
 }
 
 function generateAppRoutes(baseDoc: string[], componentsDoc: string[]) {
-  const baseDocsRoutes = baseDoc.map(
-    (docPath) => {
-      const {path, meta} = getRouteConfig(docPath)
-      return `
+  const baseDocsRoutes = baseDoc.map((docPath) => {
+    const { path, meta } = getRouteConfig(docPath)
+    return `
   {
     path: '${path}',
     component: () => import('${docPath}'),
@@ -54,13 +54,11 @@ function generateAppRoutes(baseDoc: string[], componentsDoc: string[]) {
       parent: '${meta.parent}'
     }
   }`
-    }
-  )
+  })
 
-  const componentDocsRoutes = componentsDoc.map(
-    (docPath) => {
-      const {path, meta} = getRouteConfig(docPath)
-      return `
+  const componentDocsRoutes = componentsDoc.map((docPath) => {
+    const { path, meta } = getRouteConfig(docPath)
+    return `
   {
     path: '${path}',
     component: () => import('${docPath}'),
@@ -68,8 +66,7 @@ function generateAppRoutes(baseDoc: string[], componentsDoc: string[]) {
       parent: '${meta.parent}'
     }
   }`
-    }
-  )
+  })
 
   const source = `export default [\
     ${baseDocsRoutes},
@@ -80,19 +77,16 @@ function generateAppRoutes(baseDoc: string[], componentsDoc: string[]) {
 }
 
 function generateMobileRoutes() {
-
   const dirs = fs.readdirSync(resolve(process.cwd(), 'src'))
 
-  const componentDocsRoutes = dirs.map(
-    (dir) => {
-      const path = resolve(process.cwd(), `src/${dir}/example/index.vue`)
-      return `
+  const componentDocsRoutes = dirs.map((dir) => {
+    const path = resolve(process.cwd(), `src/${dir}/example/index.vue`)
+    return `
   {
     path: '/${dir}',
     component: () => import('${path}')
   }`
-    }
-  )
+  })
 
   const source = `export default [\
     ${componentDocsRoutes}
@@ -103,33 +97,35 @@ function generateMobileRoutes() {
 
 function formatMenuGroup(list: any[]) {
   const menuGroup: Record<string, any[]> = {}
-  for(let i = 0; i < list.length; i++) {
-    const parent = list[i].parent
-    const order = list[i].order
-    if(!parent) {
+  for (let i = 0; i < list.length; i++) {
+    const { parent } = list[i]
+    const { order } = list[i]
+    if (!parent) {
       continue
     }
-    if(!menuGroup[parent]) {
+    if (!menuGroup[parent]) {
       menuGroup[parent] = []
     }
     menuGroup[parent].push(list[i])
   }
-  for(let key in menuGroup) {
-    menuGroup[key] = menuGroup[key].sort((a, b) => a.order-b.order)
+  for (const key in menuGroup) {
+    menuGroup[key] = menuGroup[key].sort((a, b) => a.order - b.order)
   }
   return menuGroup
 }
 
 function generateAppMenu(docs: string[]) {
-  const menuList = docs.map(item => {
-    const {title, order, routePath, parent} = getMenuConfig(item)
+  const menuList = docs.map((item) => {
+    const { title, order, routePath, parent } = getMenuConfig(item)
     return {
-      title,order,routePath, parent
+      title,
+      order,
+      routePath,
+      parent,
     }
   })
   const configPath = resolve(process.cwd(), 'site/pc/menu.json')
-  fs.writeJSONSync(configPath, formatMenuGroup(menuList), {spaces: 2})
-  
+  fs.writeJSONSync(configPath, formatMenuGroup(menuList), { spaces: 2 })
 }
 
 export async function generateAppConfig() {
@@ -139,5 +135,4 @@ export async function generateAppConfig() {
   generateAppRoutes(baseDoc, componentsDoc)
   generateAppMenu([...baseDoc, ...componentsDoc])
   generateMobileRoutes()
-
 }

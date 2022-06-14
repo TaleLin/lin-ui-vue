@@ -16,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/TaleLin/lin-ui-vue/issues"
   },
-  "homepage": "https://github.com/TaleLin/lin-ui-vue#readme"
+  "homepage": "https://github.com/TaleLin/lin-ui-vue#readme",
+  "devDependencies": {
+    "@lin-ui-vue/eslint-config": "workspace:*",
+    "eslint": "^8.17.0",
+    "prettier": "^2.7.0",
+    "typescript": "^4.7.3"
+  }
 }

@@ -1,5 +1,4 @@
-
-import type { PropType } from "vue"
+import type { PropType } from 'vue'
 
 function typeValidator(type: string): boolean {
   return ['default', 'primary', 'success', 'warning', 'error'].includes(type)
@@ -11,9 +10,11 @@ function sizeValidator(size: string): boolean {
 
 export const props = {
   type: {
-    type: String as PropType<'default' | 'primary' | 'warning' | 'error' | 'success'>,
+    type: String as PropType<
+      'default' | 'primary' | 'warning' | 'error' | 'success'
+    >,
     default: 'default',
-    validator: typeValidator
+    validator: typeValidator,
   },
   size: {
     type: String as PropType<'normal' | 'mini' | 'small' | 'large'>,
@@ -22,10 +23,10 @@ export const props = {
   },
   disabled: {
     type: Boolean,
-    default: false
+    default: false,
   },
   text: {
     type: Boolean,
-    default: false
-  }
+    default: false,
+  },
 }

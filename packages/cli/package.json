@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@lin-ui-vue/markdown-to-vue": "workspace:*",
+    "@lin-ui-vue/eslint-config": "workspace:*",
     "@vitejs/plugin-vue": "^2.3.3",
     "commander": "^9.3.0",
     "fs-extra": "^10.1.0",
