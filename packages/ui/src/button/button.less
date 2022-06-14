@@ -1,0 +1,132 @@
+
+// type
+@button-default-color: var(--lin-text-color);
+@button-default-background-color: var(--lin-white);
+@button-default-border-color: var(--lin-border-color);
+
+@button-primary-color: var(--lin-white);
+@button-primary-background-color: var(--lin-primary-color);
+@button-primary-border-color: var(--lin-primary-color);
+
+@button-success-color: var(--lin-white);
+@button-success-background-color: var(--lin-success-color);
+@button-success-border-color: var(--lin-success-color);
+
+@button-error-color: var(--lin-white);
+@button-error-background-color: var(--lin-error-color);
+@button-error-border-color: var(--lin-error-color);
+
+@button-warning-color: var(--lin-white);
+@button-warning-background-color: var(--lin-warning-color);
+@button-warning-border-color: var(--lin-warning-color);
+
+// size
+@button-large-height: 50px;
+@button-normal-height: 44px;
+@button-small-height: 32px;
+@button-mini-height: 24px;
+
+@button-large-padding: 0 var(--lin-padding-lg);
+@button-normal-padding: 0 var(--lin-padding-md);
+@button-small-padding: 0 var(--lin-padding-sm);
+@button-mini-padding: 0 var(--lin-padding-xs);
+
+@button-border-width: var(--lin-border-width-base);
+
+:root {
+  // type css
+  --lin-button-default-color: @button-default-color;
+  --lin-button-default-background-color: @button-default-background-color;
+  --lin-button-default-border-color: @button-default-border-color;
+
+  --lin-button-primary-color: @button-primary-color;
+  --lin-button-primary-background-color: @button-primary-background-color;
+  --lin-button-primary-border-color: @button-primary-border-color;
+
+  --lin-button-success-color: @button-success-color;
+  --lin-button-success-background-color: @button-success-background-color;
+  --lin-button-success-border-color: @button-success-border-color;
+
+  --lin-button-error-color: @button-error-color;
+  --lin-button-error-background-color: @button-error-background-color;
+  --lin-button-error-border-color: @button-error-border-color;
+
+  --lin-button-warning-color: @button-warning-color;
+  --lin-button-warning-background-color: @button-warning-background-color;
+  --lin-button-warning-border-color: @button-warning-border-color;
+
+  //size
+  --lin-button-large-height: @button-large-height;
+  --lin-button-large-padding: @button-large-padding;
+
+  --lin-button-normal-height: @button-normal-height;
+  --lin-button-normal-padding: @button-normal-padding;
+
+  --lin-button-small-height: @button-small-height;
+  --lin-button-small-padding: @button-small-padding;
+
+  --lin-button-mini-height: @button-mini-height;
+  --lin-button-mini-padding: @button-mini-padding;
+}
+
+
+.lin-button {
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  cursor: pointer;
+  -webkit-appearance: none;
+
+  &--default {
+    color: var(--lin-button-default-color);
+    background: var(--lin-button-default-background-color);
+    border: 1px solid var(--lin-button-default-border-color)
+  }
+
+  &--primary {
+    color: var(--lin-button-primary-color);
+    background: var(--lin-button-primary-background-color);
+    border: 1px solid var(--lin-button-primary-border-color)
+  }
+
+  &--success {
+    color: var(--lin-button-success-color);
+    background: var(--lin-button-success-background-color);
+    border: 1px solid var(--lin-button-success-border-color)
+  }
+
+  &--error {
+    color: var(--lin-button-error-color);
+    background: var(--lin-button-error-background-color);
+    border: 1px solid var(--lin-button-error-border-color)
+  }
+
+  &--warning {
+    color: var(--lin-button-warning-color);
+    background: var(--lin-button-warning-background-color);
+    border: 1px solid var(--lin-button-warning-border-color)
+  }
+
+  &--normal {
+    height: var(--lin-button-normal-height);
+    padding: var(--lin-button-normal-padding);
+  }
+
+  &--large {
+    height: var(--lin-button-large-height);
+    padding: var(--lin-button-large-padding);
+  }
+
+  &--small {
+    height: var(--lin-button-small-height);
+    padding: var(--lin-button-small-padding);
+  }
+
+  &--mini {
+    height: var(--lin-button-mini-height);
+    padding: var(--lin-button-mini-padding);
+  }
+}

@@ -2,6 +2,7 @@ import { createApp, render, h } from 'vue'
 import router from './routes/index'
 import App from './App.vue'
 import LinUI from '../../index'
+import '../../src/style/index.less'
 
 const app = createApp(App)
 
