@@ -3,8 +3,6 @@ import matter from 'gray-matter'
 import fs from 'fs-extra'
 import globSync from '../utils/glob'
 
-const a = 1
-
 const baseDoc = resolve(process.cwd(), 'site/docs')
 const componentsDoc = resolve(process.cwd(), 'src')
 
@@ -43,8 +41,8 @@ function getMenuConfig(docPath: string) {
   return data
 }
 
-function generateAppRoutes(baseDoc: string[], componentsDoc: string[]) {
-  const baseDocsRoutes = baseDoc.map((docPath) => {
+function generateAppRoutes(base: string[], components: string[]) {
+  const baseDocsRoutes = base.map((docPath) => {
     const { path, meta } = getRouteConfig(docPath)
     return `
   {
@@ -56,7 +54,7 @@ function generateAppRoutes(baseDoc: string[], componentsDoc: string[]) {
   }`
   })
 
-  const componentDocsRoutes = componentsDoc.map((docPath) => {
+  const componentDocsRoutes = components.map((docPath) => {
     const { path, meta } = getRouteConfig(docPath)
     return `
   {

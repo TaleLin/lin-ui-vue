@@ -4,15 +4,14 @@ import routes from '../route'
 const router = createRouter({
   history: createWebHashHistory(),
   scrollBehavior: () => {
-    return ({ top: 0 })
+    return { top: 0 }
   },
   routes: [
     {
       path: '/',
       component: import('../components/Index.vue'),
     },
-    ...routes
-   
+    ...routes,
   ],
 })
 

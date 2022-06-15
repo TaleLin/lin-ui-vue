@@ -5,7 +5,8 @@ import { bigCamel } from '../utils/index'
 export function generateEntry() {
   const importComponents: string[] = []
   const components: string[] = []
-  const dirs = fs.readdirSync(path.resolve(process.cwd(), 'src'))
+  let dirs = fs.readdirSync(path.resolve(process.cwd(), 'src'))
+  dirs = dirs.filter((item) => item !== 'style')
   dirs.forEach((dir) => {
     const componentName = bigCamel(dir)
     components.push(componentName)

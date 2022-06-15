@@ -5,7 +5,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue"
+import { defineComponent, ref } from 'vue'
+
 export default defineComponent({
   setup() {
     const value = ref(0)
@@ -15,8 +16,8 @@ export default defineComponent({
 
     return {
       onClick,
-      ref
+      ref,
     }
-  }
+  },
 })
 </script>

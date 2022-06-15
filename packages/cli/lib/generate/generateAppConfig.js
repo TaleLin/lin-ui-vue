@@ -65,10 +65,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generateAppConfig = exports.getComponentsDoc = exports.getBaseDoc = void 0;
-var glob_1 = __importDefault(require("../utils/glob"));
 var path_1 = require("path");
 var gray_matter_1 = __importDefault(require("gray-matter"));
 var fs_extra_1 = __importDefault(require("fs-extra"));
+var glob_1 = __importDefault(require("../utils/glob"));
 var baseDoc = (0, path_1.resolve)(process.cwd(), 'site/docs');
 var componentsDoc = (0, path_1.resolve)(process.cwd(), 'src');
 function getBaseDoc() {
@@ -110,8 +110,8 @@ function getRouteConfig(docPath) {
     return {
         path: "".concat(routePath.toLowerCase()),
         meta: {
-            parent: data.parent
-        }
+            parent: data.parent,
+        },
     };
 }
 function getMenuConfig(docPath) {
@@ -119,12 +119,12 @@ function getMenuConfig(docPath) {
     var data = (0, gray_matter_1.default)(docContent).data;
     return data;
 }
-function generateAppRoutes(baseDoc, componentsDoc) {
-    var baseDocsRoutes = baseDoc.map(function (docPath) {
+function generateAppRoutes(base, components) {
+    var baseDocsRoutes = base.map(function (docPath) {
         var _a = getRouteConfig(docPath), path = _a.path, meta = _a.meta;
         return "\n  {\n    path: '".concat(path, "',\n    component: () => import('").concat(docPath, "'),\n    meta: {\n      parent: '").concat(meta.parent, "'\n    }\n  }");
     });
-    var componentDocsRoutes = componentsDoc.map(function (docPath) {
+    var componentDocsRoutes = components.map(function (docPath) {
         var _a = getRouteConfig(docPath), path = _a.path, meta = _a.meta;
         return "\n  {\n    path: '".concat(path, "',\n    component: () => import('").concat(docPath, "'),\n    meta: {\n      parent: '").concat(meta.parent, "'\n    }\n  }");
     });
@@ -167,7 +167,7 @@ function generateAppMenu(docs) {
             title: title,
             order: order,
             routePath: routePath,
-            parent: parent
+            parent: parent,
         };
     });
     var configPath = (0, path_1.resolve)(process.cwd(), 'site/pc/menu.json');

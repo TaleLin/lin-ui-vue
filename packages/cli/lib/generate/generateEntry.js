@@ -11,6 +11,7 @@ function generateEntry() {
     var importComponents = [];
     var components = [];
     var dirs = fs_extra_1.default.readdirSync(path_1.default.resolve(process.cwd(), 'src'));
+    dirs = dirs.filter(function (item) { return item !== 'style'; });
     dirs.forEach(function (dir) {
         var componentName = (0, index_1.bigCamel)(dir);
         components.push(componentName);

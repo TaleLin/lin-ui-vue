@@ -54,7 +54,7 @@ var viteConfig = {
         (0, plugin_vue_1.default)({
             include: [/\.vue$/, /\.md$/],
         }),
-        (0, markdown_to_vue_1.default)()
+        (0, markdown_to_vue_1.default)(),
     ],
     server: { force: true, port: 9527 },
 };

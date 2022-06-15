@@ -1,8 +1,6 @@
 import { Component } from './component'
 
-export interface ButtonProps {
-  
-}
+export interface ButtonProps {}
 
 export class Button extends Component {
   $props: ButtonProps
