@@ -8,11 +8,12 @@ const { generateIcons } = require('./tasks/generateIcons')
 // }
 
 exports.default = series(
+  clean(['src']),
   parallel(
     generateIcons({
       theme: 'filled',
       from: ['svg/filled/*.svg'],
-      toDir: 'src/asn',
+      toDir: 'src/vNode',
     })
   )
 )
