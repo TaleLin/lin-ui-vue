@@ -32,5 +32,6 @@ module.exports = {
     '@typescript-eslint/no-var-requires': 'off',
     'vue/multi-word-component-names': 'off',
     '@typescript-eslint/no-empty-interface': 'off',
+    'no-param-reassign': 'off'
   },
 }
