@@ -1,6 +1,6 @@
-const through = require('through2')
+import through from 'through2'
 
-const createTransformStream = function (fn) {
+export const createTransformStream = function (fn: any) {
   return through.obj((chunk, enc, done) => {
     if (chunk.isBuffer() && typeof fn === 'function') {
       const original = chunk.contents.toString(enc)
@@ -16,8 +16,4 @@ const createTransformStream = function (fn) {
       done(null, chunk)
     }
   })
-}
-
-module.exports = {
-  createTransformStream,
 }
