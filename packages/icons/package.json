@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node ./scripts/example.js",
-    "generate": "gulp --require ts-node/register/transpile-only"
+    "generate": "gulp --require ts-node/register/transpile-only",
+    "generate:components": "ts-node ./scripts/generateComponents.ts"
   },
   "keywords": [],
   "author": "",
@@ -29,7 +30,11 @@
     "@babel/preset-env": "^7.18.2",
     "@babel/preset-typescript": "^7.17.12",
     "@rgrove/parse-xml": "^2.0.2",
+    "@types/fs-extra": "^9.0.13",
+    "@types/glob": "^7.2.0",
     "del": "^6.1.1",
+    "fs-extra": "^10.1.0",
+    "glob": "^8.0.3",
     "gulp": "^4.0.2",
     "gulp-rename": "^2.0.0",
     "lodash.template": "^4.5.0",

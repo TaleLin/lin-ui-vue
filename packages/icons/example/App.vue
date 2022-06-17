@@ -1,14 +1,14 @@
 <template>
-  <div class="svg-container"><Icon /></div>
+  <div class="svg-container"><IconDemo /></div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
-import Icon from './components/Icon'
+import { defineComponent } from 'vue'
+import IconDemo from './components/IconDemo'
 
 export default defineComponent({
   components: {
-    Icon,
+    IconDemo,
   },
 })
 </script>
@@ -17,13 +17,5 @@ html,
 body {
   margin: 0;
   padding: 0;
-}
-.svg-container {
-  width: 14px;
-  height: 14px;
-}
-.svg-container svg {
-  display: block;
-  width: 100%;
 }
 </style>
