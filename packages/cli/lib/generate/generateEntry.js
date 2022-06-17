@@ -17,9 +17,9 @@ function generateEntry() {
         components.push(componentName);
         importComponents.push("import ".concat(componentName, " from './src/").concat(dir, "/index'"));
     });
-    var componentsArr = "\nconst components = [\n  ".concat(components.join('\n'), "\n]");
-    var install = "\nfunction install(app: any) {\n  components.forEach(component => {\n    app.use(component);\n  })\n}";
-    var entryContent = "".concat(importComponents.join('\n'), "\n").concat(componentsArr, "\n").concat(install, "\n\nexport default {\n  install,\n  ").concat(components.join(',\n'), "\n}");
+    var componentsArr = "\n// eslint-disable-next-line prettier/prettier\nconst components = [\n  ".concat(components.join(',\n  '), "\n]");
+    var install = "\nfunction install(app: any) {\n  components.forEach((component) => {\n    app.use(component)\n  })\n}";
+    var entryContent = "".concat(importComponents.join('\n'), "\n").concat(componentsArr, "\n").concat(install, "\n\nexport default {\n  install,\n  ").concat(components.join(',\n  '), ",\n}\n");
     fs_extra_1.default.writeFileSync(path_1.default.resolve(process.cwd(), 'index.ts'), entryContent, 'utf-8');
 }
 exports.generateEntry = generateEntry;

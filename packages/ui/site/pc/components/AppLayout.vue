@@ -10,27 +10,28 @@
 </template>
 
 <script lang="ts">
-import { defineComponent  } from "vue"
-import AppHeader from "./AppHeader.vue"
-import AppSidebar from "./AppSidebar.vue"
-import AppMain from "./AppMain.vue"
-import AppMobile from "./AppMobile.vue"
+import { defineComponent } from 'vue'
+import AppHeader from './AppHeader.vue'
+import AppSidebar from './AppSidebar.vue'
+import AppMain from './AppMain.vue'
+import AppMobile from './AppMobile.vue'
+
 export default defineComponent({
   name: 'AppLayout',
   components: {
     AppHeader,
     AppSidebar,
     AppMain,
-    AppMobile
+    AppMobile,
   },
-  setup() {}
+  setup() {},
 })
 </script>
 <style lang="css">
 .app-container {
   padding-top: 60px;
 }
-.content{
+.content {
   margin-left: 240px;
   min-height: calc(100vh - 60px);
   display: flex;

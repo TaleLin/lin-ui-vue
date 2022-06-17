@@ -14,14 +14,15 @@ export function generateEntry() {
   })
 
   const componentsArr = `
+// eslint-disable-next-line prettier/prettier
 const components = [
-  ${components.join('\n')}
+  ${components.join(',\n  ')}
 ]`
 
   const install = `
 function install(app: any) {
-  components.forEach(component => {
-    app.use(component);
+  components.forEach((component) => {
+    app.use(component)
   })
 }`
 
@@ -31,8 +32,9 @@ ${install}
 
 export default {
   install,
-  ${components.join(',\n')}
-}`
+  ${components.join(',\n  ')},
+}
+`
 
   fs.writeFileSync(
     path.resolve(process.cwd(), 'index.ts'),

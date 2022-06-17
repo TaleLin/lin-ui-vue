@@ -8,7 +8,6 @@ import {
   where,
   equals,
   map,
-  defaultTo,
   gt as greaterThan,
   dissoc as deleteProp,
   unless,

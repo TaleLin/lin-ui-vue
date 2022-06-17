@@ -1,7 +1,7 @@
 <template>
   <div class="app-header">
     <a href="/" class="app-icon">
-      <img src="../assets/images/left-logo.png"/>
+      <img src="../assets/images/left-logo.png" />
     </a>
     <div class="header-link">
       <a>更新日志</a>
@@ -11,14 +11,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent  } from "vue"
+import { defineComponent } from 'vue'
+
 export default defineComponent({
   name: 'AppHeader',
-  setup() {}
+  setup() {},
 })
 </script>
 <style lang="scss">
-.app-header{
+.app-header {
   position: fixed;
   top: 0;
   left: 0;
@@ -39,7 +40,7 @@ export default defineComponent({
       width: 100%;
     }
   }
-  .header-link{
+  .header-link {
     display: flex;
     a {
       margin: 0 10px;

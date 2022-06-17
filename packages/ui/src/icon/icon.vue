@@ -1,22 +1,11 @@
 <script lang="ts">
-import { defineComponent, render } from 'vue'
-import { createComponentName, createNamespace } from '../../utils/components'
-import { props } from './props'
-
-const { b, computedClasses } = createNamespace('icon')
+import { defineComponent } from 'vue'
+import { createComponentName } from '../../utils/components'
 
 export default defineComponent({
-  name: createComponentName('Button'),
-  props,
-  setup() {
-    return {
-      b,
-      computedClasses,
-    }
+  name: createComponentName('Icon'),
+  render() {
+    return null
   },
 })
 </script>
-
-<style lang="less">
-@import 'icon.less';
-</style>

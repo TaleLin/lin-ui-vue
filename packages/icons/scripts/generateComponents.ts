@@ -46,21 +46,6 @@ export default IconDemo
   fs.outputFileSync(path.resolve(demoPath, 'IconDemo.tsx'), template)
 }
 
-// import a from './components/account-book-filled'
-
-// const components = [a]
-
-// const install = function (app) {
-//   components.forEach((component) => {
-//     app.component(component.name, component)
-//   })
-// }
-
-// export default {
-//   install,
-//   ...components,
-// }
-
 const generateEntry = (components: string[]) => {
   const importList: string[] = []
   const componentList: string[] = []

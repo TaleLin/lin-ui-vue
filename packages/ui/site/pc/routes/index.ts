@@ -8,14 +8,12 @@ const router = createRouter({
     {
       path: '/',
       component: import('../components/AppLayout.vue'),
-      children: [
-        ...routes,
-      ]
+      children: [...routes],
     },
     {
       path: '/index',
       component: import('../pages/index/index.vue'),
-    }
+    },
   ],
 })
 

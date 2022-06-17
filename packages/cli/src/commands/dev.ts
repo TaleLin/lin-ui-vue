@@ -2,6 +2,7 @@ import { createServer, ViteDevServer } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
 import md from '@lin-ui-vue/markdown-to-vue'
+import vueJsx from '@vitejs/plugin-vue-jsx'
 import { generateAppConfig } from '../generate/generateAppConfig'
 import { generateEntry } from '../generate/generateEntry'
 
@@ -14,6 +15,7 @@ const viteConfig = {
     vue({
       include: [/\.vue$/, /\.md$/],
     }),
+    vueJsx(),
     md(),
   ],
   server: { force: true, port: 9527 },

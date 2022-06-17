@@ -1,6 +1,11 @@
 import Button from './src/button/index'
+import Icon from './src/icon/index'
 
-const components = [Button]
+// eslint-disable-next-line prettier/prettier
+const components = [
+  Button,
+  Icon
+]
 
 function install(app: any) {
   components.forEach((component) => {
@@ -11,4 +16,5 @@ function install(app: any) {
 export default {
   install,
   Button,
+  Icon,
 }

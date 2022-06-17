@@ -25,6 +25,12 @@
       "order": 1,
       "routePath": "/button",
       "parent": "基础"
+    },
+    {
+      "title": "按钮 Button",
+      "order": 1,
+      "routePath": "/button",
+      "parent": "基础"
     }
   ]
 }

@@ -1,10 +1,16 @@
 <template>
   <div class="app-sidebar">
-    <div class="sidebar-group" v-for="(menu, key) in menuData" :key="key">
-      <div class="sidebar-heading" :class="{'active': activeParent === key}">{{key}}</div>
+    <div v-for="(menu, key) in menuData" :key="key" class="sidebar-group">
+      <div class="sidebar-heading" :class="{ active: activeParent === key }">
+        {{ key }}
+      </div>
       <ul>
-        <li v-for="item in menu" :key="item.title" :class="{'active': currentPath === item.routePath}">
-          <router-link :to="item.routePath">{{item.title}}</router-link>
+        <li
+          v-for="item in menu"
+          :key="item.title"
+          :class="{ active: currentPath === item.routePath }"
+        >
+          <router-link :to="item.routePath">{{ item.title }}</router-link>
         </li>
       </ul>
     </div>
@@ -12,35 +18,39 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch  } from "vue"
-import { useRouter, useRoute } from "vue-router"
+import { defineComponent, ref, watch } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 import MenuData from '../menu.json'
+
 export default defineComponent({
   name: 'AppSidebar',
   setup() {
-    let route = useRoute()
-    let router = useRouter()
-    let currentPath = ref('')
-    let activeParent = ref('')
-    
+    const route = useRoute()
+    const router = useRouter()
+    const currentPath = ref('')
+    const activeParent = ref('')
+
     const clickMenu = () => {}
 
-    watch(() => route.path, (value) => {
-      currentPath.value = value
-      activeParent.value = router.currentRoute.value.meta?.parent as string
-    }, {immediate: true})
-    
+    watch(
+      () => route.path,
+      (value) => {
+        currentPath.value = value
+        activeParent.value = router.currentRoute.value.meta?.parent as string
+      },
+      { immediate: true }
+    )
 
     return {
       menuData: ref(MenuData),
       currentPath,
-      activeParent
+      activeParent,
     }
-  }
+  },
 })
 </script>
 <style lang="scss">
-.app-sidebar{
+.app-sidebar {
   position: fixed;
   top: 60px;
   left: 0;
@@ -51,11 +61,11 @@ export default defineComponent({
   background: #fff;
   padding-top: 20px;
   color: #45526b;
-  .sidebar-group{
+  .sidebar-group {
     padding-left: 5px;
     .sidebar-heading {
       color: #45526b;
-      transition: color .15s ease;
+      transition: color 0.15s ease;
       font-size: 16px;
       padding: 10px 25px;
       width: 100%;
@@ -80,7 +90,7 @@ export default defineComponent({
         cursor: pointer;
         font-size: 13px;
         margin: 10px 0;
-        &.active a{
+        &.active a {
           color: #3683d6;
         }
         a {

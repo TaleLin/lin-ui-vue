@@ -44,6 +44,7 @@ var vite_1 = require("vite");
 var plugin_vue_1 = __importDefault(require("@vitejs/plugin-vue"));
 var path_1 = __importDefault(require("path"));
 var markdown_to_vue_1 = __importDefault(require("@lin-ui-vue/markdown-to-vue"));
+var plugin_vue_jsx_1 = __importDefault(require("@vitejs/plugin-vue-jsx"));
 var generateAppConfig_1 = require("../generate/generateAppConfig");
 var generateEntry_1 = require("../generate/generateEntry");
 var server;
@@ -54,6 +55,7 @@ var viteConfig = {
         (0, plugin_vue_1.default)({
             include: [/\.vue$/, /\.md$/],
         }),
+        (0, plugin_vue_jsx_1.default)(),
         (0, markdown_to_vue_1.default)(),
     ],
     server: { force: true, port: 9527 },

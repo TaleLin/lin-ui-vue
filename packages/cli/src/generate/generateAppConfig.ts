@@ -47,10 +47,11 @@ function generateAppRoutes(base: string[], components: string[]) {
     return `
   {
     path: '${path}',
+    // eslint-disable-next-line prettier/prettier
     component: () => import('${docPath}'),
     meta: {
-      parent: '${meta.parent}'
-    }
+      parent: '${meta.parent}',
+    },
   }`
   })
 
@@ -59,17 +60,17 @@ function generateAppRoutes(base: string[], components: string[]) {
     return `
   {
     path: '${path}',
+    // eslint-disable-next-line prettier/prettier
     component: () => import('${docPath}'),
     meta: {
-      parent: '${meta.parent}'
-    }
+      parent: '${meta.parent}',
+    },
   }`
   })
 
-  const source = `export default [\
-    ${baseDocsRoutes},
-    ${componentDocsRoutes}
-]`
+  const source = `export default [${baseDocsRoutes},${componentDocsRoutes},
+]
+`
   const configPath = resolve(process.cwd(), 'site/pc/route.ts')
   fs.outputFileSync(configPath, source)
 }
@@ -79,16 +80,17 @@ function generateMobileRoutes() {
 
   const componentDocsRoutes = dirs.map((dir) => {
     const path = resolve(process.cwd(), `src/${dir}/example/index.vue`)
-    return `
-  {
+    return `{
     path: '/${dir}',
+    // eslint-disable-next-line prettier/prettier
     component: () => import('${path}')
   }`
   })
 
-  const source = `export default [\
-    ${componentDocsRoutes}
-]`
+  const source = `export default [
+  ${componentDocsRoutes.join(',\n  ')},
+]
+`
   const configPath = resolve(process.cwd(), 'site/mobile/route.ts')
   fs.outputFileSync(configPath, source)
 }
@@ -97,15 +99,14 @@ function formatMenuGroup(list: any[]) {
   const menuGroup: Record<string, any[]> = {}
   for (let i = 0; i < list.length; i++) {
     const { parent } = list[i]
-    const { order } = list[i]
-    if (!parent) {
-      continue
+    if (parent) {
+      if (!menuGroup[parent]) {
+        menuGroup[parent] = []
+      }
+      menuGroup[parent].push(list[i])
     }
-    if (!menuGroup[parent]) {
-      menuGroup[parent] = []
-    }
-    menuGroup[parent].push(list[i])
   }
+  // eslint-disable-next-line no-restricted-syntax, guard-for-in
   for (const key in menuGroup) {
     menuGroup[key] = menuGroup[key].sort((a, b) => a.order - b.order)
   }
@@ -127,10 +128,10 @@ function generateAppMenu(docs: string[]) {
 }
 
 export async function generateAppConfig() {
-  const baseDoc = await getBaseDoc()
-  const componentsDoc = await getComponentsDoc()
+  const baseDocFile = await getBaseDoc()
+  const componentsDocFile = await getComponentsDoc()
 
-  generateAppRoutes(baseDoc, componentsDoc)
-  generateAppMenu([...baseDoc, ...componentsDoc])
+  generateAppRoutes(baseDocFile, componentsDocFile)
+  generateAppMenu([...baseDocFile, ...componentsDocFile])
   generateMobileRoutes()
 }
