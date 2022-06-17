@@ -1,8 +1,9 @@
 import { defineComponent } from 'vue'
-import VueIcon from '../components/Icon'
-import AccountBookFilledVNode from '../src/vNode/AccountBookFilled'
+import VueIcon from '../../../components/Icon'
+import AccountBookFilledVNode from './AccountBookFilled'
 
 const AccountBookFilled = defineComponent({
+  name: 'AccountBookFilled',
   components: { VueIcon },
   render() {
     return <VueIcon icon={AccountBookFilledVNode}></VueIcon>

@@ -23,7 +23,6 @@ const Icon = defineComponent({
       ...icon.vNode,
       attrs: { ...attrs, fill: 'currentColor', width: '1em', height: '1em' },
     }
-    console.log(vNode)
     return <span>{icon && generateVNode(vNode, icon.name)}</span>
   },
 })

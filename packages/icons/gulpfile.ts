@@ -13,7 +13,7 @@ export default series(
     generateIcons({
       theme: 'filled',
       from: ['svg/filled/*.svg'],
-      toDir: 'src/vNode',
+      toDir: 'src/components',
     })
   )
 )
