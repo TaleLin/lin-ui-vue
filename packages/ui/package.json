@@ -3,7 +3,8 @@
   "private": true,
   "version": "0.0.1",
   "scripts": {
-    "dev": "lin-ui-cli dev"
+    "dev": "lin-ui-cli dev",
+    "create": "lin-ui-cli create menu"
   },
   "dependencies": {
     "vue": "^3.2.25",
