@@ -1,0 +1,30 @@
+<template>
+  <button>
+    <div>
+      <slot />
+    </div>
+  </button>
+</template>
+
+<script lang="ts">
+import { defineComponent } from 'vue'
+import { createComponentName, createNamespace } from '../../utils/components'
+import { props } from './props'
+
+const { b, computedClasses } = createNamespace('<%=componentName %>')
+
+export default defineComponent({
+  name: createComponentName('<%=componentName %>'),
+  props,
+  setup() {
+    return {
+      b,
+      computedClasses,
+    }
+  },
+})
+</script>
+
+<style lang="less">
+@import './<%=componentName %>.less';
+</style>

@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { Command } from 'commander'
 import { dev } from './commands/dev'
+import { create } from './commands/create'
 
 const program = new Command()
 
@@ -10,5 +11,6 @@ program
   .usage('<command> [options]')
 
 program.command('dev').description('Run dev').action(dev)
+program.command('create <name>').description('Create Component').action(create)
 
 program.parse()
