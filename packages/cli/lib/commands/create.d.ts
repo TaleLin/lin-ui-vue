@@ -1,1 +1,1 @@
-export declare function create(): void;
+export declare function create(name: string): void;

@@ -10,7 +10,11 @@ program
   .version(`lin-vue-cli ${require('../package.json').version}`)
   .usage('<command> [options]')
 
-program.command('dev').description('Run dev').action(dev)
+program
+  .command('dev')
+  .description('Run dev')
+  .option('-s,--simple', 'only start sever, not create config ')
+  .action(dev)
 program.command('create <name>').description('Create Component').action(create)
 
 program.parse()

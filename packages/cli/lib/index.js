@@ -9,6 +9,10 @@ program
     // eslint-disable-next-line global-require
     .version("lin-vue-cli ".concat(require('../package.json').version))
     .usage('<command> [options]');
-program.command('dev').description('Run dev').action(dev_1.dev);
+program
+    .command('dev')
+    .description('Run dev')
+    .option('-s,--simple', 'only start sever, not create config ')
+    .action(dev_1.dev);
 program.command('create <name>').description('Create Component').action(create_1.create);
 program.parse();
