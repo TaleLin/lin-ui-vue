@@ -18,10 +18,10 @@ Lin UI 致力于给小程序开发者提供愉悦的开发体验。
 ```html
 <template>
   <div>
-    <l-button type="default">default</l-button>
-    <l-button type="error">error</l-button>
-    <l-button type="success">success</l-button>
-    <l-button type="warning">warning</l-button>
+    <lin-button type="default">default</lin-button>
+    <lin-button type="error">error</lin-button>
+    <lin-button type="success">success</lin-button>
+    <lin-button type="warning">warning</lin-button>
   </div>
 </template>
 ```

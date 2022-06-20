@@ -21,15 +21,21 @@
   ],
   "基础": [
     {
-      "title": "按钮 Button",
+      "title": "avatar avatar",
       "order": 1,
-      "routePath": "/button",
+      "routePath": "/avatar",
       "parent": "基础"
     },
     {
       "title": "按钮 Button",
       "order": 1,
       "routePath": "/button",
+      "parent": "基础"
+    },
+    {
+      "title": "图标 Icon",
+      "order": 2,
+      "routePath": "/icon",
       "parent": "基础"
     }
   ]
