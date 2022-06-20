@@ -4,8 +4,8 @@ exports.ComponentDir = exports.ComponentDocsEjs = exports.ComponentExampleEjs = 
 var path_1 = require("path");
 exports.CWD = process.cwd();
 exports.EJS = (0, path_1.resolve)(__dirname, '../../template');
-exports.ComponentTemplateEjs = (0, path_1.resolve)(exports.EJS, 'component/component.ejs');
-exports.ComponentLessEjs = (0, path_1.resolve)(exports.EJS, 'component/component.less');
+exports.ComponentTemplateEjs = (0, path_1.resolve)(exports.EJS, 'component/component.vue.ejs');
+exports.ComponentLessEjs = (0, path_1.resolve)(exports.EJS, 'component/component.less.ejs');
 exports.ComponentIndexEjs = (0, path_1.resolve)(exports.EJS, 'component/index.ejs');
 exports.ComponentPropsEjs = (0, path_1.resolve)(exports.EJS, 'component/props.ejs');
 exports.ComponentExampleEjs = (0, path_1.resolve)(exports.EJS, 'component/example/index.ejs');

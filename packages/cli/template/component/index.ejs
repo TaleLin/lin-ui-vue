@@ -1,0 +1,8 @@
+import type { App } from 'vue'
+import <%=bigCamelName %> from './<%=bigCamelName %>.vue'
+
+<%=bigCamelName %>.install = function (app: App) {
+  app.component(<%=bigCamelName %>.name, <%=bigCamelName %>)
+}
+
+export default <%=bigCamelName %>

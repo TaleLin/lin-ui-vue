@@ -5,9 +5,9 @@ export const CWD = process.cwd()
 
 export const EJS = resolve(__dirname, '../../template')
 
-export const ComponentTemplateEjs = resolve(EJS, 'component/component.ejs')
+export const ComponentTemplateEjs = resolve(EJS, 'component/component.vue.ejs')
 
-export const ComponentLessEjs = resolve(EJS, 'component/component.less')
+export const ComponentLessEjs = resolve(EJS, 'component/component.less.ejs')
 
 export const ComponentIndexEjs = resolve(EJS, 'component/index.ejs')
 

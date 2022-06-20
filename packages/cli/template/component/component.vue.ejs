@@ -1,9 +1,5 @@
 <template>
-  <button>
-    <div>
-      <slot />
-    </div>
-  </button>
+  <div><%=name %></div>
 </template>
 
 <script lang="ts">
@@ -11,10 +7,10 @@ import { defineComponent } from 'vue'
 import { createComponentName, createNamespace } from '../../utils/components'
 import { props } from './props'
 
-const { b, computedClasses } = createNamespace('<%=componentName %>')
+const { b, computedClasses } = createNamespace('<%=name %>')
 
 export default defineComponent({
-  name: createComponentName('<%=componentName %>'),
+  name: createComponentName('<%=bigCamelName %>'),
   props,
   setup() {
     return {
@@ -26,5 +22,5 @@ export default defineComponent({
 </script>
 
 <style lang="less">
-@import './<%=componentName %>.less';
+@import './<%=name %>.less';
 </style>
