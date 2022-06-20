@@ -2,6 +2,7 @@
 import { Command } from 'commander'
 import { dev } from './commands/dev'
 import { create } from './commands/create'
+import { buildApp } from './commands/build'
 
 const program = new Command()
 
@@ -15,6 +16,9 @@ program
   .description('Run dev')
   .option('-s,--simple', 'only start sever, not create config ')
   .action(dev)
+
 program.command('create <name>').description('Create Component').action(create)
+
+program.command('build').description('Run build').action(buildApp)
 
 program.parse()

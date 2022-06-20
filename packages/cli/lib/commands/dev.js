@@ -35,31 +35,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.dev = void 0;
 var vite_1 = require("vite");
-var plugin_vue_1 = __importDefault(require("@vitejs/plugin-vue"));
-var path_1 = __importDefault(require("path"));
-var markdown_to_vue_1 = __importDefault(require("@lin-ui-vue/markdown-to-vue"));
-var plugin_vue_jsx_1 = __importDefault(require("@vitejs/plugin-vue-jsx"));
 var generateAppConfig_1 = require("../generate/generateAppConfig");
 var generateEntry_1 = require("../generate/generateEntry");
+var vite_config_1 = require("../config/vite.config");
 var server;
-var viteConfig = {
-    root: path_1.default.resolve(__dirname, '../../../ui/site'),
-    // configFile: false,
-    plugins: [
-        (0, plugin_vue_1.default)({
-            include: [/\.vue$/, /\.md$/],
-        }),
-        (0, plugin_vue_jsx_1.default)(),
-        (0, markdown_to_vue_1.default)(),
-    ],
-    server: { force: true, port: 9527 },
-};
 function startServer() {
     return __awaiter(this, void 0, void 0, function () {
         var _a;
@@ -80,7 +62,7 @@ function startServer() {
                     return [4 /*yield*/, (0, generateEntry_1.generateEntry)()];
                 case 4:
                     _b.sent();
-                    return [4 /*yield*/, (0, vite_1.createServer)(viteConfig)];
+                    return [4 /*yield*/, (0, vite_1.createServer)(vite_config_1.viteConfig)];
                 case 5:
                     server = _b.sent();
                     return [4 /*yield*/, server.listen()];
