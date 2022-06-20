@@ -1,6 +1,7 @@
 import ejs from 'ejs'
 import fs from 'fs-extra'
 import { resolve } from 'path'
+import inquirer from 'inquirer'
 import { bigCamel } from '../utils'
 import {
   ComponentTemplateEjs,
@@ -11,11 +12,6 @@ import {
   ComponentExampleEjs,
   ComponentDir,
 } from '../constant'
-
-// const componentVuePath = resolve(
-//   __dirname,
-//   '../../template/component/component.vue.ejs'
-// )
 
 function generateComponentVue(name: string, outputPath: string) {
   const res = fs.readFileSync(ComponentTemplateEjs)
@@ -61,30 +57,29 @@ function generateComponentExample(name: string, outputPath: string) {
   fs.writeFileSync(resolve(outputPath, `example/index.vue`), content)
 }
 
-export function create(name: string) {
+export async function create(name: string) {
   const outputPath = ComponentDir(name)
 
   if (fs.pathExistsSync(outputPath)) {
-    //
-  } else {
-    fs.ensureDirSync(outputPath)
-    generateComponentVue(name, outputPath)
-    generateComponentLess(name, outputPath)
-    generateComponentIndex(name, outputPath)
-    generateComponentProps(name, outputPath)
-    generateComponentDocs(name, outputPath)
-    generateComponentExample(name, outputPath)
+    const { cover } = await inquirer.prompt([
+      {
+        type: 'confirm',
+        name: 'cover',
+        message: '该组件文件夹已存在，是否要覆盖？',
+        default: false,
+      },
+    ])
+    if (!cover) {
+      process.exit(1)
+    }
+    fs.emptyDirSync(outputPath)
   }
-  // const res = fs.readFileSync(ComponentTemplateEjs)
-  // const content = ejs.render(res.toString(), { componentName: name })
-  // const outputPath = ComponentDir(name)
-  // // 组件已存在 询问是否覆盖
-  // if (fs.pathExistsSync(outputPath)) {
-  //   console.log('组件已存在')
-  // } else {
-  //   fs.ensureDirSync(outputPath)
-  //   fs.writeFileSync(resolve(outputPath, `${bigCamel(name)}.vue`), content)
-  // }
-  // console.log(content)
-  // 生成 Component.vue component.less index.ts props.ts docs example
+
+  fs.ensureDirSync(outputPath)
+  generateComponentVue(name, outputPath)
+  generateComponentLess(name, outputPath)
+  generateComponentIndex(name, outputPath)
+  generateComponentProps(name, outputPath)
+  generateComponentDocs(name, outputPath)
+  generateComponentExample(name, outputPath)
 }

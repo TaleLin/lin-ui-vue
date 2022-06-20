@@ -1,1 +1,1 @@
-export declare function create(name: string): void;
+export declare function create(name: string): Promise<void>;
