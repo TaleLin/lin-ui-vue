@@ -4,6 +4,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var commander_1 = require("commander");
 var dev_1 = require("./commands/dev");
 var create_1 = require("./commands/create");
+var build_1 = require("./commands/build");
 var program = new commander_1.Command();
 program
     // eslint-disable-next-line global-require
@@ -15,4 +16,5 @@ program
     .option('-s,--simple', 'only start sever, not create config ')
     .action(dev_1.dev);
 program.command('create <name>').description('Create Component').action(create_1.create);
+program.command('build').description('Run build').action(build_1.buildApp);
 program.parse();

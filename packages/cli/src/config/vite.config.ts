@@ -18,7 +18,7 @@ export const viteConfig = {
 
 export const viteBuildConfig = {
   root: path.resolve(__dirname, '../../../ui/site'),
-  // configFile: false,
+  publicDir: 'false',
   plugins: [
     vue({
       include: [/\.vue$/, /\.md$/],
@@ -26,18 +26,24 @@ export const viteBuildConfig = {
     vueJsx(),
     md(),
   ],
-  server: { force: true, port: 9527 },
   build: {
-    base: './',
+    // base: './',
     outDir: path.resolve(__dirname, '../../../ui/dist'),
-    brotliSize: false,
+    // brotliSize: false,
     emptyOutDir: true,
     cssTarget: 'chrome61',
     rollupOptions: {
-      input: {
-        main: path.resolve(__dirname, '../../../ui/site/index.html'),
-        mobile: path.resolve(__dirname, '../../../ui/site/mobile.html'),
+      external: ['vue'],
+      output: {
+        globals: {
+          vue: 'vue',
+        },
       },
+    },
+    lib: {
+      entry: path.resolve(process.cwd(), 'index.ts'),
+      name: '@lin-ui-vue/ui', // umd的变量名
+      fileName: (format: string) => `index.${format}.js`, // 输出文件名
     },
   },
 }

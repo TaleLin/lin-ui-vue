@@ -1,5 +1,4 @@
 import { resolve } from 'path'
-import { cwd } from 'process'
 
 export const CWD = process.cwd()
 
@@ -19,3 +18,6 @@ export const ComponentDocsEjs = resolve(EJS, 'component/docs/README.ejs')
 
 export const ComponentDir = (componentName: string) =>
   resolve(CWD, `src/${componentName}`)
+
+export const UI_TYPES_DIR = resolve(CWD, 'types')
+export const UI_PACKAGE_JSON = resolve(CWD, 'package.json')
