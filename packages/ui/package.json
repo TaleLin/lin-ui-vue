@@ -1,12 +1,18 @@
 {
   "name": "@lin-ui-vue/ui",
-  "private": true,
-  "version": "0.0.1",
+  "private": false,
+  "version": "0.0.4",
   "scripts": {
     "dev": "lin-ui-cli dev",
     "create": "lin-ui-cli create",
     "build": "lin-ui-cli build"
   },
+  "main": "dist/index.es.js",
+  "typings": "types/index.d.ts",
+  "files": [
+    "dist",
+    "types"
+  ],
   "dependencies": {
     "vue": "^3.2.25",
     "vue-router": "^4.0.16"
