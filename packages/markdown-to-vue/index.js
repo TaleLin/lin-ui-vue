@@ -87,13 +87,13 @@ function MarkdownVitePlugin(options) {
     enforce: 'pre',
     transform(source, id) {
       if (!/\.md$/.test(id)) {
-        return
+        return undefined
       }
       try {
         return markdownToVue(source, id, options)
       } catch (e) {
         this.error(e)
-        return ''
+        return undefined
       }
     },
     async handleHotUpdate(ctx) {
@@ -101,7 +101,7 @@ function MarkdownVitePlugin(options) {
 
       const readSource = ctx.read
       ctx.read = async function () {
-        return markdownToVue(await readSource(), id, options)
+        return markdownToVue(await readSource(), options)
       }
     },
   }
