@@ -36,5 +36,6 @@ module.exports = {
     'no-underscore-dangle': 'off',
     'import/no-dynamic-require': 'off',
     'global-require': 'off',
+    'no-use-before-define': 'off',
   },
 }

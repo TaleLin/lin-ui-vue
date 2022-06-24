@@ -9,3 +9,8 @@ export declare const ComponentDocsEjs: string;
 export declare const ComponentDir: (componentName: string) => string;
 export declare const UI_TYPES_DIR: string;
 export declare const UI_PACKAGE_JSON: string;
+export declare const UI_SRC_DIR: string;
+export declare const UI_LIB_DIR: string;
+export declare const UI_ES_DIR: string;
+export declare const UI_EXAMPLE_DIR = "example";
+export declare const UI_DOCS_DIR = "docs";

@@ -21,3 +21,9 @@ export const ComponentDir = (componentName: string) =>
 
 export const UI_TYPES_DIR = resolve(CWD, 'types')
 export const UI_PACKAGE_JSON = resolve(CWD, 'package.json')
+
+export const UI_SRC_DIR = resolve(CWD, 'src')
+export const UI_LIB_DIR = resolve(CWD, 'lib')
+export const UI_ES_DIR = resolve(CWD, 'es')
+export const UI_EXAMPLE_DIR = 'example'
+export const UI_DOCS_DIR = 'docs'

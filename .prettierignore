@@ -1,0 +1,8 @@
+lib/
+dist/
+
+**/package.json
+*.md
+
+pnpm-lock.yaml
+pnpm-workspace.yaml

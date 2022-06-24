@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UI_PACKAGE_JSON = exports.UI_TYPES_DIR = exports.ComponentDir = exports.ComponentDocsEjs = exports.ComponentExampleEjs = exports.ComponentPropsEjs = exports.ComponentIndexEjs = exports.ComponentLessEjs = exports.ComponentTemplateEjs = exports.EJS = exports.CWD = void 0;
+exports.UI_DOCS_DIR = exports.UI_EXAMPLE_DIR = exports.UI_ES_DIR = exports.UI_LIB_DIR = exports.UI_SRC_DIR = exports.UI_PACKAGE_JSON = exports.UI_TYPES_DIR = exports.ComponentDir = exports.ComponentDocsEjs = exports.ComponentExampleEjs = exports.ComponentPropsEjs = exports.ComponentIndexEjs = exports.ComponentLessEjs = exports.ComponentTemplateEjs = exports.EJS = exports.CWD = void 0;
 var path_1 = require("path");
 exports.CWD = process.cwd();
 exports.EJS = (0, path_1.resolve)(__dirname, '../../template');
@@ -16,3 +16,8 @@ var ComponentDir = function (componentName) {
 exports.ComponentDir = ComponentDir;
 exports.UI_TYPES_DIR = (0, path_1.resolve)(exports.CWD, 'types');
 exports.UI_PACKAGE_JSON = (0, path_1.resolve)(exports.CWD, 'package.json');
+exports.UI_SRC_DIR = (0, path_1.resolve)(exports.CWD, 'src');
+exports.UI_LIB_DIR = (0, path_1.resolve)(exports.CWD, 'lib');
+exports.UI_ES_DIR = (0, path_1.resolve)(exports.CWD, 'es');
+exports.UI_EXAMPLE_DIR = 'example';
+exports.UI_DOCS_DIR = 'docs';
