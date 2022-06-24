@@ -20,7 +20,3 @@ export default defineComponent({
   },
 })
 </script>
-
-<style lang="less">
-@import './avatar.less';
-</style>

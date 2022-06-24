@@ -1,6 +1,9 @@
 <template>
   <div>
-    <router-view></router-view>
+    <lin-button type="primary">11</lin-button>
+
+    <lin-button type="error" size="small">11</lin-button>
+    <!-- <router-view></router-view> -->
   </div>
 </template>
 

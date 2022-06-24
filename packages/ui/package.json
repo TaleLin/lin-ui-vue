@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "lin-ui-cli dev",
     "create": "lin-ui-cli create",
-    "build": "lin-ui-cli build"
+    "build": "lin-ui-cli build",
+    "compile": "lin-ui-cli compile"
   },
   "main": "dist/index.es.js",
   "typings": "types/index.d.ts",

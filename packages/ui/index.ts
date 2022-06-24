@@ -1,7 +1,6 @@
 import Avatar from './src/avatar/index'
 import Button from './src/button/index'
 import Icon from './src/icon/index'
-import './src/style/index.less'
 
 // eslint-disable-next-line prettier/prettier
 const components = [
