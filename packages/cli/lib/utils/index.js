@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isTS = exports.isSFC = exports.isDir = exports.bigCamel = exports.smallCamel = exports.replaceExt = void 0;
+exports.isLess = exports.isTS = exports.isSFC = exports.isFileType = exports.isDir = exports.bigCamel = exports.smallCamel = exports.replaceExt = void 0;
 var fs_extra_1 = require("fs-extra");
 var path_1 = require("path");
 var replaceExt = function (file, ext) {
@@ -23,11 +23,13 @@ var isDir = function (file) {
     return (0, fs_extra_1.pathExistsSync)(file) && (0, fs_extra_1.lstatSync)(file).isDirectory();
 };
 exports.isDir = isDir;
-var isSFC = function (file) {
-    return (0, fs_extra_1.pathExistsSync)(file) && (0, path_1.extname)(file) === '.vue';
+var isFileType = function (file, ext) {
+    return (0, fs_extra_1.pathExistsSync)(file) && (0, path_1.extname)(file) === ".".concat(ext);
 };
+exports.isFileType = isFileType;
+var isSFC = function (file) { return (0, exports.isFileType)(file, 'vue'); };
 exports.isSFC = isSFC;
-var isTS = function (file) {
-    return (0, fs_extra_1.pathExistsSync)(file) && (0, path_1.extname)(file) === '.ts';
-};
+var isTS = function (file) { return (0, exports.isFileType)(file, 'ts'); };
 exports.isTS = isTS;
+var isLess = function (file) { return (0, exports.isFileType)(file, 'less'); };
+exports.isLess = isLess;

@@ -8,7 +8,8 @@
     "build": "lin-ui-cli build",
     "compile": "lin-ui-cli compile"
   },
-  "main": "dist/index.es.js",
+  "main": "lib/index.js",
+  "module": "es/index.js",
   "typings": "types/index.d.ts",
   "files": [
     "dist",

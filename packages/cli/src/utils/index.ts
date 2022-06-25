@@ -17,8 +17,12 @@ export function bigCamel(str: string, separator: '-' | '_' = '-') {
 export const isDir = (file: string): boolean =>
   pathExistsSync(file) && lstatSync(file).isDirectory()
 
-export const isSFC = (file: string): boolean =>
-  pathExistsSync(file) && extname(file) === '.vue'
+export const isFileType = (file: string, ext: 'less' | 'ts' | 'vue') => {
+  return pathExistsSync(file) && extname(file) === `.${ext}`
+}
 
-export const isTS = (file: string): boolean =>
-  pathExistsSync(file) && extname(file) === '.ts'
+export const isSFC = (file: string): boolean => isFileType(file, 'vue')
+
+export const isTS = (file: string): boolean => isFileType(file, 'ts')
+
+export const isLess = (file: string): boolean => isFileType(file, 'less')
