@@ -1,1 +1,3 @@
-export declare function dev(): Promise<void>;
+export declare function dev(cmd: {
+    simple: boolean;
+}): Promise<void>;

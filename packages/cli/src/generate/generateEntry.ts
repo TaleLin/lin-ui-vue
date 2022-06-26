@@ -1,12 +1,13 @@
 import fs from 'fs-extra'
 import path from 'path'
 import { bigCamel } from '../utils/index'
+import { isComponentDir } from '../utils/component'
 
 export function generateEntry() {
   const importComponents: string[] = []
   const components: string[] = []
   let dirs = fs.readdirSync(path.resolve(process.cwd(), 'src'))
-  dirs = dirs.filter((item) => item !== 'style')
+  dirs = dirs.filter((item) => isComponentDir(item))
   dirs.forEach((dir) => {
     const componentName = bigCamel(dir)
     components.push(componentName)

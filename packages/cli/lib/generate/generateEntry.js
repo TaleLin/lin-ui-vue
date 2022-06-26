@@ -7,11 +7,12 @@ exports.generateEntry = void 0;
 var fs_extra_1 = __importDefault(require("fs-extra"));
 var path_1 = __importDefault(require("path"));
 var index_1 = require("../utils/index");
+var component_1 = require("../utils/component");
 function generateEntry() {
     var importComponents = [];
     var components = [];
     var dirs = fs_extra_1.default.readdirSync(path_1.default.resolve(process.cwd(), 'src'));
-    dirs = dirs.filter(function (item) { return item !== 'style'; });
+    dirs = dirs.filter(function (item) { return (0, component_1.isComponentDir)(item); });
     dirs.forEach(function (dir) {
         var componentName = (0, index_1.bigCamel)(dir);
         components.push(componentName);

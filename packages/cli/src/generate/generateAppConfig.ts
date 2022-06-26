@@ -1,19 +1,17 @@
 import { resolve } from 'path'
 import matter from 'gray-matter'
 import fs from 'fs-extra'
+import { UI_COMPONENT_DOC_DIR, UI_BASE_DOC_DIR } from '../constant/index'
 import globSync from '../utils/glob'
 
-const baseDoc = resolve(process.cwd(), 'site/docs')
-const componentsDoc = resolve(process.cwd(), 'src')
-
 export async function getBaseDoc() {
-  const files = await globSync(`${baseDoc}/*.md`)
+  const files = await globSync(`${UI_BASE_DOC_DIR}/*.md`)
 
   return files
 }
 
 export async function getComponentsDoc() {
-  const files = await globSync(`${componentsDoc}/**/*.md`)
+  const files = await globSync(`${UI_COMPONENT_DOC_DIR}/**/*.md`)
 
   return files
 }
@@ -41,7 +39,7 @@ function getMenuConfig(docPath: string) {
   return data
 }
 
-function generateAppRoutes(base: string[], components: string[]) {
+function generatePCRoutes(base: string[], components: string[]) {
   const baseDocsRoutes = base.map((docPath) => {
     const { path, meta } = getRouteConfig(docPath)
     return `
@@ -127,11 +125,11 @@ function generateAppMenu(docs: string[]) {
   fs.writeJSONSync(configPath, formatMenuGroup(menuList), { spaces: 2 })
 }
 
-export async function generateAppConfig() {
+export async function generateUIDoc() {
   const baseDocFile = await getBaseDoc()
   const componentsDocFile = await getComponentsDoc()
 
-  generateAppRoutes(baseDocFile, componentsDocFile)
+  generatePCRoutes(baseDocFile, componentsDocFile)
   generateAppMenu([...baseDocFile, ...componentsDocFile])
   generateMobileRoutes()
 }

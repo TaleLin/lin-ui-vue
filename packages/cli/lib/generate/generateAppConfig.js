@@ -64,19 +64,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.generateAppConfig = exports.getComponentsDoc = exports.getBaseDoc = void 0;
+exports.generateUIDoc = exports.getComponentsDoc = exports.getBaseDoc = void 0;
 var path_1 = require("path");
 var gray_matter_1 = __importDefault(require("gray-matter"));
 var fs_extra_1 = __importDefault(require("fs-extra"));
+var index_1 = require("../constant/index");
 var glob_1 = __importDefault(require("../utils/glob"));
-var baseDoc = (0, path_1.resolve)(process.cwd(), 'site/docs');
-var componentsDoc = (0, path_1.resolve)(process.cwd(), 'src');
 function getBaseDoc() {
     return __awaiter(this, void 0, void 0, function () {
         var files;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, (0, glob_1.default)("".concat(baseDoc, "/*.md"))];
+                case 0: return [4 /*yield*/, (0, glob_1.default)("".concat(index_1.UI_BASE_DOC_DIR, "/*.md"))];
                 case 1:
                     files = _a.sent();
                     return [2 /*return*/, files];
@@ -90,7 +89,7 @@ function getComponentsDoc() {
         var files;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, (0, glob_1.default)("".concat(componentsDoc, "/**/*.md"))];
+                case 0: return [4 /*yield*/, (0, glob_1.default)("".concat(index_1.UI_COMPONENT_DOC_DIR, "/**/*.md"))];
                 case 1:
                     files = _a.sent();
                     return [2 /*return*/, files];
@@ -119,7 +118,7 @@ function getMenuConfig(docPath) {
     var data = (0, gray_matter_1.default)(docContent).data;
     return data;
 }
-function generateAppRoutes(base, components) {
+function generatePCRoutes(base, components) {
     var baseDocsRoutes = base.map(function (docPath) {
         var _a = getRouteConfig(docPath), path = _a.path, meta = _a.meta;
         return "\n  {\n    path: '".concat(path, "',\n    // eslint-disable-next-line prettier/prettier\n    component: () => import('").concat(docPath, "'),\n    meta: {\n      parent: '").concat(meta.parent, "',\n    },\n  }");
@@ -172,7 +171,7 @@ function generateAppMenu(docs) {
     var configPath = (0, path_1.resolve)(process.cwd(), 'site/pc/menu.json');
     fs_extra_1.default.writeJSONSync(configPath, formatMenuGroup(menuList), { spaces: 2 });
 }
-function generateAppConfig() {
+function generateUIDoc() {
     return __awaiter(this, void 0, void 0, function () {
         var baseDocFile, componentsDocFile;
         return __generator(this, function (_a) {
@@ -183,7 +182,7 @@ function generateAppConfig() {
                     return [4 /*yield*/, getComponentsDoc()];
                 case 2:
                     componentsDocFile = _a.sent();
-                    generateAppRoutes(baseDocFile, componentsDocFile);
+                    generatePCRoutes(baseDocFile, componentsDocFile);
                     generateAppMenu(__spreadArray(__spreadArray([], __read(baseDocFile), false), __read(componentsDocFile), false));
                     generateMobileRoutes();
                     return [2 /*return*/];
@@ -191,4 +190,4 @@ function generateAppConfig() {
         });
     });
 }
-exports.generateAppConfig = generateAppConfig;
+exports.generateUIDoc = generateUIDoc;

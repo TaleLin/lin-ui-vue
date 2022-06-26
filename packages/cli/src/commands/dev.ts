@@ -1,5 +1,6 @@
 import { createServer, ViteDevServer } from 'vite'
-import { generateAppConfig } from '../generate/generateAppConfig'
+import { ensureUIConfig } from '../utils/component'
+import { generateUIDoc } from '../generate/generateAppConfig'
 import { generateEntry } from '../generate/generateEntry'
 import { viteConfig } from '../config/vite.config'
 
@@ -8,7 +9,10 @@ let server: ViteDevServer
 async function startServer() {
   server && (await server.close())
 
-  await generateAppConfig()
+  ensureUIConfig()
+
+  await generateUIDoc()
+
   await generateEntry()
 
   server = await createServer(viteConfig)
@@ -17,7 +21,7 @@ async function startServer() {
   server.printUrls()
 }
 
-export async function dev() {
+export async function dev(cmd: { simple: boolean }) {
   process.env.NODE_ENV = 'development'
   await startServer()
 }

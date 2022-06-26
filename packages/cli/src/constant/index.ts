@@ -1,6 +1,10 @@
 import { resolve } from 'path'
 
+export const UI_NAME = 'lin-ui-vue'
+
 export const CWD = process.cwd()
+
+export const UI_CONFIG_DIR = resolve(CWD, `.${UI_NAME}`)
 
 export const EJS = resolve(__dirname, '../../template')
 
@@ -27,3 +31,6 @@ export const UI_LIB_DIR = resolve(CWD, 'lib')
 export const UI_ES_DIR = resolve(CWD, 'es')
 export const UI_EXAMPLE_DIR = 'example'
 export const UI_DOCS_DIR = 'docs'
+
+export const UI_BASE_DOC_DIR = resolve(CWD, 'site/docs')
+export const UI_COMPONENT_DOC_DIR = resolve(CWD, 'src')

@@ -38,6 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.dev = void 0;
 var vite_1 = require("vite");
+var component_1 = require("../utils/component");
 var generateAppConfig_1 = require("../generate/generateAppConfig");
 var generateEntry_1 = require("../generate/generateEntry");
 var vite_config_1 = require("../config/vite.config");
@@ -56,7 +57,8 @@ function startServer() {
                     _b.label = 2;
                 case 2:
                     _a;
-                    return [4 /*yield*/, (0, generateAppConfig_1.generateAppConfig)()];
+                    (0, component_1.ensureUIConfig)();
+                    return [4 /*yield*/, (0, generateAppConfig_1.generateUIDoc)()];
                 case 3:
                     _b.sent();
                     return [4 /*yield*/, (0, generateEntry_1.generateEntry)()];
@@ -74,7 +76,7 @@ function startServer() {
         });
     });
 }
-function dev() {
+function dev(cmd) {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             switch (_a.label) {
