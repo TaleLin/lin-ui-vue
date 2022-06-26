@@ -2,10 +2,15 @@ import { rollup } from 'rollup'
 import { resolve } from 'path'
 import vuePlugin from 'rollup-plugin-vue'
 import typescript from 'rollup-plugin-typescript2'
-import { readdirSync } from 'fs-extra'
-import gulp from 'gulp'
-import run from 'gulp-cli'
-import { isLess, isTS, isSFC, isDir, replaceExt } from '../utils/index'
+import { readdirSync, copySync, ensureDirSync, ensureFileSync } from 'fs-extra'
+import {
+  isLess,
+  isTS,
+  isSFC,
+  isDir,
+  replaceExt,
+  smartAppendFileSync,
+} from '../utils/index'
 import {
   CWD,
   UI_DOCS_DIR,
@@ -47,18 +52,18 @@ export function compileFile(file: string): any {
   if (isSFC(file)) return file
   if (isTS(file)) return file
   if (isDir(file)) return compileDir(file)
-  if (isLess(file)) compileLess(file)
 
   return null
 }
 
-export function compileLess(file: string) {
-  // console.log(file)
-  gulp.task('default', () => {
-    console.log(111)
-  })
-  run('default')
-}
+// export function compileLess(file: string) {
+//   const lessPath = file.replace(`${UI_SRC_DIR}/`, '')
+//   ensureDirSync(resolve(CWD, 'es/theme'))
+//   ensureDirSync(resolve(CWD, 'lib/theme'))
+//   copySync(file, resolve(CWD, 'es/theme', lessPath))
+//   copySync(file, resolve(CWD, 'lib/theme', lessPath))
+//   ensureFileSync(resolve(CWD, 'es/theme'))
+// }
 
 async function build() {
   const componentEntry = getComponentEntry()

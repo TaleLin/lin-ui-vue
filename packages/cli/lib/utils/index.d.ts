@@ -6,3 +6,4 @@ export declare const isFileType: (file: string, ext: 'less' | 'ts' | 'vue') => b
 export declare const isSFC: (file: string) => boolean;
 export declare const isTS: (file: string) => boolean;
 export declare const isLess: (file: string) => boolean;
+export declare function smartAppendFileSync(file: string, code: string): void;

@@ -1,4 +1,9 @@
-import { lstatSync, pathExistsSync } from 'fs-extra'
+import {
+  appendFileSync,
+  lstatSync,
+  pathExistsSync,
+  readFileSync,
+} from 'fs-extra'
 import { extname } from 'path'
 
 export const replaceExt = (file: string, ext: string): string =>
@@ -26,3 +31,13 @@ export const isSFC = (file: string): boolean => isFileType(file, 'vue')
 export const isTS = (file: string): boolean => isFileType(file, 'ts')
 
 export const isLess = (file: string): boolean => isFileType(file, 'less')
+
+export function smartAppendFileSync(file: string, code: string) {
+  if (pathExistsSync(file)) {
+    const content = readFileSync(file, 'utf-8')
+
+    if (!content.includes(code)) {
+      appendFileSync(file, code)
+    }
+  }
+}

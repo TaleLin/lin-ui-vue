@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isLess = exports.isTS = exports.isSFC = exports.isFileType = exports.isDir = exports.bigCamel = exports.smallCamel = exports.replaceExt = void 0;
+exports.smartAppendFileSync = exports.isLess = exports.isTS = exports.isSFC = exports.isFileType = exports.isDir = exports.bigCamel = exports.smallCamel = exports.replaceExt = void 0;
 var fs_extra_1 = require("fs-extra");
 var path_1 = require("path");
 var replaceExt = function (file, ext) {
@@ -33,3 +33,12 @@ var isTS = function (file) { return (0, exports.isFileType)(file, 'ts'); };
 exports.isTS = isTS;
 var isLess = function (file) { return (0, exports.isFileType)(file, 'less'); };
 exports.isLess = isLess;
+function smartAppendFileSync(file, code) {
+    if ((0, fs_extra_1.pathExistsSync)(file)) {
+        var content = (0, fs_extra_1.readFileSync)(file, 'utf-8');
+        if (!content.includes(code)) {
+            (0, fs_extra_1.appendFileSync)(file, code);
+        }
+    }
+}
+exports.smartAppendFileSync = smartAppendFileSync;
