@@ -33,6 +33,12 @@
       "parent": "基础"
     },
     {
+      "title": "tag tag",
+      "order": 1,
+      "routePath": "/tag",
+      "parent": "基础"
+    },
+    {
       "title": "图标 Icon",
       "order": 2,
       "routePath": "/icon",
