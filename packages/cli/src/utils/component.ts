@@ -42,5 +42,5 @@ export const addComponent = (name: string) => {
     return
   }
   const list = getComponentList()
-  writeJSONSync(componentsPath, list.push(name), { spaces: 2 })
+  writeJSONSync(componentsPath, [...list, name], { spaces: 2 })
 }
