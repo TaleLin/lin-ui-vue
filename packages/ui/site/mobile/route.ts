@@ -14,4 +14,9 @@ export default [
     // eslint-disable-next-line prettier/prettier
     component: () => import('/Users/daipengpeng/works/Lin/lin-ui-vue/packages/ui/src/icon/example/index.vue')
   },
+  {
+    path: '/tag',
+    // eslint-disable-next-line prettier/prettier
+    component: () => import('/Users/daipengpeng/works/Lin/lin-ui-vue/packages/ui/src/tag/example/index.vue')
+  },
 ]

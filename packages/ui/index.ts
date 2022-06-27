@@ -1,12 +1,14 @@
 import Avatar from './src/avatar/index'
 import Button from './src/button/index'
 import Icon from './src/icon/index'
+import Tag from './src/tag/index'
 
 // eslint-disable-next-line prettier/prettier
 const components = [
   Avatar,
   Button,
-  Icon
+  Icon,
+  Tag
 ]
 
 function install(app: any) {
@@ -20,4 +22,5 @@ export default {
   Avatar,
   Button,
   Icon,
+  Tag,
 }
