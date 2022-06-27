@@ -4,6 +4,7 @@ import { resolve } from 'path'
 import inquirer from 'inquirer'
 import { addComponent } from '../utils/component'
 import { bigCamel } from '../utils'
+import { generateUIDoc } from '../generate/generateAppConfig'
 import {
   ComponentTemplateEjs,
   ComponentLessEjs,
@@ -13,6 +14,7 @@ import {
   ComponentExampleEjs,
   ComponentDir,
 } from '../constant'
+import { generateEntry } from '../generate/generateEntry'
 
 function generateComponentVue(name: string, outputPath: string) {
   const res = fs.readFileSync(ComponentTemplateEjs)
@@ -88,4 +90,6 @@ export async function create(name: string) {
   generateComponentDocs(name, outputPath)
   generateComponentExample(name, outputPath)
   appendComponentList(name)
+  generateUIDoc()
+  generateEntry()
 }
