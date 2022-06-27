@@ -2,6 +2,7 @@ import ejs from 'ejs'
 import fs from 'fs-extra'
 import { resolve } from 'path'
 import inquirer from 'inquirer'
+import { UI_COMPONENTS_DIR } from '../constant/index'
 import { addComponent } from '../utils/component'
 import { bigCamel } from '../utils'
 import { generateUIDoc } from '../generate/generateAppConfig'
@@ -13,6 +14,7 @@ import {
   ComponentDocsEjs,
   ComponentExampleEjs,
   ComponentDir,
+  CWD,
 } from '../constant'
 import { generateEntry } from '../generate/generateEntry'
 
@@ -28,7 +30,7 @@ function generateComponentVue(name: string, outputPath: string) {
 function generateComponentLess(name: string, outputPath: string) {
   const res = fs.readFileSync(ComponentLessEjs)
   const content = ejs.render(res.toString(), { name })
-  fs.writeFileSync(resolve(outputPath, `${name}.less`), content)
+  fs.writeFileSync(resolve(UI_COMPONENTS_DIR, `theme/${name}.less`), content)
 }
 
 function generateComponentIndex(name: string, outputPath: string) {
@@ -64,8 +66,24 @@ function appendComponentList(name: string) {
   addComponent(name)
 }
 
+function generateLessEntry(name: string) {
+  const less = fs
+    .readFileSync(resolve(UI_COMPONENTS_DIR, 'theme/index.less'))
+    .toString()
+  const appendLess = `@import './${name}.less';`
+  if (less.includes(appendLess)) {
+    return
+  }
+  fs.writeFileSync(
+    resolve(UI_COMPONENTS_DIR, 'theme/index.less'),
+    `${less.toString()}\n${appendLess}`
+  )
+}
+
 export async function create(name: string) {
   const outputPath = ComponentDir(name)
+
+  generateLessEntry(name)
 
   if (fs.pathExistsSync(outputPath)) {
     const { cover } = await inquirer.prompt([
@@ -92,4 +110,5 @@ export async function create(name: string) {
   appendComponentList(name)
   generateUIDoc()
   generateEntry()
+  generateLessEntry(name)
 }
