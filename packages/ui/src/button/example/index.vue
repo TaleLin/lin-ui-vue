@@ -1,6 +1,7 @@
 <template>
   <div>
     <lin-button>按钮</lin-button>
+
     <lin-button type="success">按钮</lin-button>
     <lin-button type="error">按钮</lin-button>
     <lin-button type="warning">按钮</lin-button>

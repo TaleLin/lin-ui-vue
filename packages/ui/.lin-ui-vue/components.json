@@ -2,5 +2,6 @@
   "avatar",
   "button",
   "icon",
-  "tag"
+  "tag",
+  "config-provider"
 ]
