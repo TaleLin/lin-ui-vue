@@ -2,22 +2,9 @@ import { rollup } from 'rollup'
 import { resolve } from 'path'
 import vuePlugin from 'rollup-plugin-vue'
 import typescript from 'rollup-plugin-typescript2'
-import { readdirSync, copySync, ensureDirSync, ensureFileSync } from 'fs-extra'
-import {
-  isLess,
-  isTS,
-  isSFC,
-  isDir,
-  replaceExt,
-  smartAppendFileSync,
-} from '../utils/index'
-import {
-  CWD,
-  UI_DOCS_DIR,
-  UI_LIB_DIR,
-  UI_SRC_DIR,
-  UI_EXAMPLE_DIR,
-} from '../constant/index'
+import { readdirSync } from 'fs-extra'
+import { isTS, isSFC, isDir, replaceExt } from '../utils/index'
+import { CWD, UI_DOCS_DIR, UI_SRC_DIR, UI_EXAMPLE_DIR } from '../constant/index'
 
 function getComponentEntry() {
   const moduleDirs = readdirSync(UI_SRC_DIR)
@@ -55,15 +42,6 @@ export function compileFile(file: string): any {
 
   return null
 }
-
-// export function compileLess(file: string) {
-//   const lessPath = file.replace(`${UI_SRC_DIR}/`, '')
-//   ensureDirSync(resolve(CWD, 'es/theme'))
-//   ensureDirSync(resolve(CWD, 'lib/theme'))
-//   copySync(file, resolve(CWD, 'es/theme', lessPath))
-//   copySync(file, resolve(CWD, 'lib/theme', lessPath))
-//   ensureFileSync(resolve(CWD, 'es/theme'))
-// }
 
 async function build() {
   const componentEntry = getComponentEntry()

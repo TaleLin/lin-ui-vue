@@ -44,6 +44,7 @@ var ejs_1 = __importDefault(require("ejs"));
 var fs_extra_1 = __importDefault(require("fs-extra"));
 var path_1 = require("path");
 var inquirer_1 = __importDefault(require("inquirer"));
+var component_1 = require("../utils/component");
 var utils_1 = require("../utils");
 var constant_1 = require("../constant");
 function generateComponentVue(name, outputPath) {
@@ -84,6 +85,9 @@ function generateComponentExample(name, outputPath) {
     fs_extra_1.default.ensureDirSync((0, path_1.resolve)(outputPath, 'example'));
     fs_extra_1.default.writeFileSync((0, path_1.resolve)(outputPath, "example/index.vue"), content);
 }
+function appendComponentList(name) {
+    (0, component_1.addComponent)(name);
+}
 function create(name) {
     return __awaiter(this, void 0, void 0, function () {
         var outputPath, cover;
@@ -115,6 +119,7 @@ function create(name) {
                     generateComponentProps(name, outputPath);
                     generateComponentDocs(name, outputPath);
                     generateComponentExample(name, outputPath);
+                    appendComponentList(name);
                     return [2 /*return*/];
             }
         });

@@ -6,14 +6,15 @@ import { viteConfig } from '../config/vite.config'
 
 let server: ViteDevServer
 
-async function startServer() {
+async function startServer(cmd: { simple: boolean }) {
+  const { simple } = cmd
   server && (await server.close())
 
-  ensureUIConfig()
-
-  await generateUIDoc()
-
-  await generateEntry()
+  if (!simple) {
+    ensureUIConfig()
+    await generateUIDoc()
+    await generateEntry()
+  }
 
   server = await createServer(viteConfig)
 
@@ -23,5 +24,5 @@ async function startServer() {
 
 export async function dev(cmd: { simple: boolean }) {
   process.env.NODE_ENV = 'development'
-  await startServer()
+  await startServer(cmd)
 }

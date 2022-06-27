@@ -1,18 +1,17 @@
 import { resolve } from 'path'
 import matter from 'gray-matter'
-import fs from 'fs-extra'
-import { UI_COMPONENT_DOC_DIR, UI_BASE_DOC_DIR } from '../constant/index'
+import fs, { pathExistsSync } from 'fs-extra'
+import { UI_COMPONENTS_DIR, UI_BASE_DOC_DIR, CWD } from '../constant/index'
 import globSync from '../utils/glob'
+import { isComponentDir } from '../utils/component'
 
 export async function getBaseDoc() {
   const files = await globSync(`${UI_BASE_DOC_DIR}/*.md`)
-
   return files
 }
 
 export async function getComponentsDoc() {
-  const files = await globSync(`${UI_COMPONENT_DOC_DIR}/**/*.md`)
-
+  const files = await globSync(`${UI_COMPONENTS_DIR}/**/*.md`)
   return files
 }
 
@@ -39,8 +38,8 @@ function getMenuConfig(docPath: string) {
   return data
 }
 
-function generatePCRoutes(base: string[], components: string[]) {
-  const baseDocsRoutes = base.map((docPath) => {
+function generatePCRoutes(routes: string[]) {
+  const baseDocsRoutes = routes.map((docPath) => {
     const { path, meta } = getRouteConfig(docPath)
     return `
   {
@@ -53,20 +52,7 @@ function generatePCRoutes(base: string[], components: string[]) {
   }`
   })
 
-  const componentDocsRoutes = components.map((docPath) => {
-    const { path, meta } = getRouteConfig(docPath)
-    return `
-  {
-    path: '${path}',
-    // eslint-disable-next-line prettier/prettier
-    component: () => import('${docPath}'),
-    meta: {
-      parent: '${meta.parent}',
-    },
-  }`
-  })
-
-  const source = `export default [${baseDocsRoutes},${componentDocsRoutes},
+  const source = `export default [${baseDocsRoutes},
 ]
 `
   const configPath = resolve(process.cwd(), 'site/pc/route.ts')
@@ -74,15 +60,21 @@ function generatePCRoutes(base: string[], components: string[]) {
 }
 
 function generateMobileRoutes() {
-  const dirs = fs.readdirSync(resolve(process.cwd(), 'src'))
+  const dirs = fs
+    .readdirSync(UI_COMPONENTS_DIR)
+    .filter((dir) => isComponentDir(dir))
 
-  const componentDocsRoutes = dirs.map((dir) => {
-    const path = resolve(process.cwd(), `src/${dir}/example/index.vue`)
-    return `{
+  const componentDocsRoutes: string[] = []
+
+  dirs.forEach((dir) => {
+    const path = resolve(UI_COMPONENTS_DIR, `${dir}/example/index.vue`)
+    if (pathExistsSync(path)) {
+      componentDocsRoutes.push(`{
     path: '/${dir}',
     // eslint-disable-next-line prettier/prettier
     component: () => import('${path}')
-  }`
+  }`)
+    }
   })
 
   const source = `export default [
@@ -121,7 +113,7 @@ function generateAppMenu(docs: string[]) {
       parent,
     }
   })
-  const configPath = resolve(process.cwd(), 'site/pc/menu.json')
+  const configPath = resolve(CWD, 'site/pc/menu.json')
   fs.writeJSONSync(configPath, formatMenuGroup(menuList), { spaces: 2 })
 }
 
@@ -129,7 +121,7 @@ export async function generateUIDoc() {
   const baseDocFile = await getBaseDoc()
   const componentsDocFile = await getComponentsDoc()
 
-  generatePCRoutes(baseDocFile, componentsDocFile)
+  generatePCRoutes([...baseDocFile, ...componentsDocFile])
   generateAppMenu([...baseDocFile, ...componentsDocFile])
   generateMobileRoutes()
 }
