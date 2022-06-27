@@ -46,7 +46,9 @@ var path_1 = require("path");
 var inquirer_1 = __importDefault(require("inquirer"));
 var component_1 = require("../utils/component");
 var utils_1 = require("../utils");
+var generateAppConfig_1 = require("../generate/generateAppConfig");
 var constant_1 = require("../constant");
+var generateEntry_1 = require("../generate/generateEntry");
 function generateComponentVue(name, outputPath) {
     var res = fs_extra_1.default.readFileSync(constant_1.ComponentTemplateEjs);
     var content = ejs_1.default.render(res.toString(), {
@@ -120,6 +122,8 @@ function create(name) {
                     generateComponentDocs(name, outputPath);
                     generateComponentExample(name, outputPath);
                     appendComponentList(name);
+                    (0, generateAppConfig_1.generateUIDoc)();
+                    (0, generateEntry_1.generateEntry)();
                     return [2 /*return*/];
             }
         });

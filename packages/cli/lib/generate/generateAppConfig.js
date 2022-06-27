@@ -162,6 +162,7 @@ function generateMobileRoutes() {
             componentDocsRoutes.push("{\n    path: '/".concat(dir, "',\n    // eslint-disable-next-line prettier/prettier\n    component: () => import('").concat(path, "')\n  }"));
         }
     });
+    console.log(dirs);
     var source = "export default [\n  ".concat(componentDocsRoutes.join(',\n  '), ",\n]\n");
     var configPath = (0, path_1.resolve)(process.cwd(), 'site/mobile/route.ts');
     fs_extra_1.default.outputFileSync(configPath, source);
