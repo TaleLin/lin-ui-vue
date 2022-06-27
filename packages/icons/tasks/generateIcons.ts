@@ -14,7 +14,6 @@ export const generateIcons = ({ theme, from, toDir }: any) => {
       .pipe(useTemplate(theme))
       .pipe(
         rename((file) => {
-          console.log(file, 111)
           if (file.basename) {
             const name = `${file.basename}-${theme}`
             file.basename = `${name}/${bigCamel(name)}`

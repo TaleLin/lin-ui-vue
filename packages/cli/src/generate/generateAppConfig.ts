@@ -76,7 +76,6 @@ function generateMobileRoutes() {
   }`)
     }
   })
-  console.log(dirs)
 
   const source = `export default [
   ${componentDocsRoutes.join(',\n  ')},

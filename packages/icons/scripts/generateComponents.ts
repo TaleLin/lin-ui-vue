@@ -54,7 +54,6 @@ const generateEntry = (components: string[]) => {
     importList.push(`import ${name} from './components/${item}'`)
     componentList.push(name)
   })
-  console.log(importList.join('\n'))
   const template = `${importList.join('\n')}
 
 // eslint-disable-next-line prettier/prettier
