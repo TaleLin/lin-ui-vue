@@ -3,7 +3,7 @@ import LinIcon from '@lin-ui-vue/icons'
 import router from './routes/index'
 import App from './App.vue'
 import LinUI from '../../index'
-import '../../src/style/index.less'
+import '../../src/theme/index.less'
 
 const app = createApp(App)
 

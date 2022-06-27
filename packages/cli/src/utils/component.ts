@@ -20,7 +20,7 @@ export const ensureUIConfig = () => {
 }
 
 export const cacheComponentList = () => {
-  const filterDirs = ['style', 'utils']
+  const filterDirs = ['theme', 'utils']
   const list = readdirSync(UI_SRC_DIR).filter(
     (item) => !filterDirs.includes(item)
   )

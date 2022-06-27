@@ -10,7 +10,7 @@ function buildCss(target: 'esm' | 'cjs') {
   if (target === 'esm') output = 'es'
   if (target === 'cjs') output = 'lib'
   return () => {
-    return src(resolve(__dirname, 'src/style/**/*.less'))
+    return src(resolve(__dirname, 'src/theme/**/*.less'))
       .pipe(less())
       .pipe(cleanCSS())
       .pipe(dest(`${output}/theme`))
