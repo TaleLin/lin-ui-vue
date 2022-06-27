@@ -17,4 +17,4 @@ export declare const UI_ES_DIR: string;
 export declare const UI_EXAMPLE_DIR = "example";
 export declare const UI_DOCS_DIR = "docs";
 export declare const UI_BASE_DOC_DIR: string;
-export declare const UI_COMPONENT_DOC_DIR: string;
+export declare const UI_COMPONENTS_DIR: string;

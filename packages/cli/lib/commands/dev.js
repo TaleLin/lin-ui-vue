@@ -43,12 +43,13 @@ var generateAppConfig_1 = require("../generate/generateAppConfig");
 var generateEntry_1 = require("../generate/generateEntry");
 var vite_config_1 = require("../config/vite.config");
 var server;
-function startServer() {
+function startServer(cmd) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a;
+        var simple, _a;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
+                    simple = cmd.simple;
                     _a = server;
                     if (!_a) return [3 /*break*/, 2];
                     return [4 /*yield*/, server.close()];
@@ -57,6 +58,7 @@ function startServer() {
                     _b.label = 2;
                 case 2:
                     _a;
+                    if (!!simple) return [3 /*break*/, 5];
                     (0, component_1.ensureUIConfig)();
                     return [4 /*yield*/, (0, generateAppConfig_1.generateUIDoc)()];
                 case 3:
@@ -64,11 +66,12 @@ function startServer() {
                     return [4 /*yield*/, (0, generateEntry_1.generateEntry)()];
                 case 4:
                     _b.sent();
-                    return [4 /*yield*/, (0, vite_1.createServer)(vite_config_1.viteConfig)];
-                case 5:
+                    _b.label = 5;
+                case 5: return [4 /*yield*/, (0, vite_1.createServer)(vite_config_1.viteConfig)];
+                case 6:
                     server = _b.sent();
                     return [4 /*yield*/, server.listen()];
-                case 6:
+                case 7:
                     _b.sent();
                     server.printUrls();
                     return [2 /*return*/];
@@ -82,7 +85,7 @@ function dev(cmd) {
             switch (_a.label) {
                 case 0:
                     process.env.NODE_ENV = 'development';
-                    return [4 /*yield*/, startServer()];
+                    return [4 /*yield*/, startServer(cmd)];
                 case 1:
                     _a.sent();
                     return [2 /*return*/];

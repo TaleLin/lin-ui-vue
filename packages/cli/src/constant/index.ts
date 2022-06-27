@@ -33,4 +33,4 @@ export const UI_EXAMPLE_DIR = 'example'
 export const UI_DOCS_DIR = 'docs'
 
 export const UI_BASE_DOC_DIR = resolve(CWD, 'site/docs')
-export const UI_COMPONENT_DOC_DIR = resolve(CWD, 'src')
+export const UI_COMPONENTS_DIR = resolve(CWD, 'src')

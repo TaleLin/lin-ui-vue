@@ -2,6 +2,7 @@ import ejs from 'ejs'
 import fs from 'fs-extra'
 import { resolve } from 'path'
 import inquirer from 'inquirer'
+import { addComponent } from '../utils/component'
 import { bigCamel } from '../utils'
 import {
   ComponentTemplateEjs,
@@ -57,6 +58,10 @@ function generateComponentExample(name: string, outputPath: string) {
   fs.writeFileSync(resolve(outputPath, `example/index.vue`), content)
 }
 
+function appendComponentList(name: string) {
+  addComponent(name)
+}
+
 export async function create(name: string) {
   const outputPath = ComponentDir(name)
 
@@ -82,4 +87,5 @@ export async function create(name: string) {
   generateComponentProps(name, outputPath)
   generateComponentDocs(name, outputPath)
   generateComponentExample(name, outputPath)
+  appendComponentList(name)
 }

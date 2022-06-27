@@ -1,12 +1,13 @@
 import fs from 'fs-extra'
 import path from 'path'
+import { UI_COMPONENTS_DIR } from '../constant/index'
 import { bigCamel } from '../utils/index'
 import { isComponentDir } from '../utils/component'
 
 export function generateEntry() {
   const importComponents: string[] = []
   const components: string[] = []
-  let dirs = fs.readdirSync(path.resolve(process.cwd(), 'src'))
+  let dirs = fs.readdirSync(UI_COMPONENTS_DIR)
   dirs = dirs.filter((item) => isComponentDir(item))
   dirs.forEach((dir) => {
     const componentName = bigCamel(dir)

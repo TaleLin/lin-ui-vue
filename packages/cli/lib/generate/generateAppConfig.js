@@ -1,4 +1,27 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -67,9 +90,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.generateUIDoc = exports.getComponentsDoc = exports.getBaseDoc = void 0;
 var path_1 = require("path");
 var gray_matter_1 = __importDefault(require("gray-matter"));
-var fs_extra_1 = __importDefault(require("fs-extra"));
+var fs_extra_1 = __importStar(require("fs-extra"));
 var index_1 = require("../constant/index");
 var glob_1 = __importDefault(require("../utils/glob"));
+var component_1 = require("../utils/component");
 function getBaseDoc() {
     return __awaiter(this, void 0, void 0, function () {
         var files;
@@ -89,7 +113,7 @@ function getComponentsDoc() {
         var files;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, (0, glob_1.default)("".concat(index_1.UI_COMPONENT_DOC_DIR, "/**/*.md"))];
+                case 0: return [4 /*yield*/, (0, glob_1.default)("".concat(index_1.UI_COMPONENTS_DIR, "/**/*.md"))];
                 case 1:
                     files = _a.sent();
                     return [2 /*return*/, files];
@@ -118,24 +142,25 @@ function getMenuConfig(docPath) {
     var data = (0, gray_matter_1.default)(docContent).data;
     return data;
 }
-function generatePCRoutes(base, components) {
-    var baseDocsRoutes = base.map(function (docPath) {
+function generatePCRoutes(routes) {
+    var baseDocsRoutes = routes.map(function (docPath) {
         var _a = getRouteConfig(docPath), path = _a.path, meta = _a.meta;
         return "\n  {\n    path: '".concat(path, "',\n    // eslint-disable-next-line prettier/prettier\n    component: () => import('").concat(docPath, "'),\n    meta: {\n      parent: '").concat(meta.parent, "',\n    },\n  }");
     });
-    var componentDocsRoutes = components.map(function (docPath) {
-        var _a = getRouteConfig(docPath), path = _a.path, meta = _a.meta;
-        return "\n  {\n    path: '".concat(path, "',\n    // eslint-disable-next-line prettier/prettier\n    component: () => import('").concat(docPath, "'),\n    meta: {\n      parent: '").concat(meta.parent, "',\n    },\n  }");
-    });
-    var source = "export default [".concat(baseDocsRoutes, ",").concat(componentDocsRoutes, ",\n]\n");
+    var source = "export default [".concat(baseDocsRoutes, ",\n]\n");
     var configPath = (0, path_1.resolve)(process.cwd(), 'site/pc/route.ts');
     fs_extra_1.default.outputFileSync(configPath, source);
 }
 function generateMobileRoutes() {
-    var dirs = fs_extra_1.default.readdirSync((0, path_1.resolve)(process.cwd(), 'src'));
-    var componentDocsRoutes = dirs.map(function (dir) {
-        var path = (0, path_1.resolve)(process.cwd(), "src/".concat(dir, "/example/index.vue"));
-        return "{\n    path: '/".concat(dir, "',\n    // eslint-disable-next-line prettier/prettier\n    component: () => import('").concat(path, "')\n  }");
+    var dirs = fs_extra_1.default
+        .readdirSync(index_1.UI_COMPONENTS_DIR)
+        .filter(function (dir) { return (0, component_1.isComponentDir)(dir); });
+    var componentDocsRoutes = [];
+    dirs.forEach(function (dir) {
+        var path = (0, path_1.resolve)(index_1.UI_COMPONENTS_DIR, "".concat(dir, "/example/index.vue"));
+        if ((0, fs_extra_1.pathExistsSync)(path)) {
+            componentDocsRoutes.push("{\n    path: '/".concat(dir, "',\n    // eslint-disable-next-line prettier/prettier\n    component: () => import('").concat(path, "')\n  }"));
+        }
     });
     var source = "export default [\n  ".concat(componentDocsRoutes.join(',\n  '), ",\n]\n");
     var configPath = (0, path_1.resolve)(process.cwd(), 'site/mobile/route.ts');
@@ -168,7 +193,7 @@ function generateAppMenu(docs) {
             parent: parent,
         };
     });
-    var configPath = (0, path_1.resolve)(process.cwd(), 'site/pc/menu.json');
+    var configPath = (0, path_1.resolve)(index_1.CWD, 'site/pc/menu.json');
     fs_extra_1.default.writeJSONSync(configPath, formatMenuGroup(menuList), { spaces: 2 });
 }
 function generateUIDoc() {
@@ -182,7 +207,7 @@ function generateUIDoc() {
                     return [4 /*yield*/, getComponentsDoc()];
                 case 2:
                     componentsDocFile = _a.sent();
-                    generatePCRoutes(baseDocFile, componentsDocFile);
+                    generatePCRoutes(__spreadArray(__spreadArray([], __read(baseDocFile), false), __read(componentsDocFile), false));
                     generateAppMenu(__spreadArray(__spreadArray([], __read(baseDocFile), false), __read(componentsDocFile), false));
                     generateMobileRoutes();
                     return [2 /*return*/];

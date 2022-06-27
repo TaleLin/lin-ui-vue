@@ -35,3 +35,12 @@ export const getComponentList = () => {
 export const isComponentDir = (dir: string) => {
   return getComponentList().includes(dir)
 }
+
+export const addComponent = (name: string) => {
+  ensureUIConfig()
+  if (isComponentDir(name)) {
+    return
+  }
+  const list = getComponentList()
+  writeJSONSync(componentsPath, list.push(name), { spaces: 2 })
+}
