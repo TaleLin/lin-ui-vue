@@ -1,2 +1,268 @@
 
-.lin-tag{}
+// type
+@tag-default-color: var(--lin-text-color);
+@tag-default-background-color: var(--lin-white);
+@tag-default-border-color: var(--lin-border-color);
+
+@tag-primary-dark-color: var(--lin-white);
+@tag-primary-light-color: var(--lin-primary-color);
+@tag-primary-plain-color: var(--lin-primary-color);
+
+@tag-success-dark-color: var(--lin-white);
+@tag-success-light-color: var(--lin-success-color);
+@tag-success-plain-color: var(--lin-success-color);
+
+@tag-error-dark-color: var(--lin-white);
+@tag-error-light-color: var(--lin-error-color);
+@tag-error-plain-color: var(--lin-error-color);
+
+@tag-warning-dark-color: var(--lin-white);
+@tag-warning-light-color: var(--lin-warning-color);
+@tag-warning-plain-color: var(--lin-warning-color);
+
+@tag-primary-dark-background-color: var(--lin-primary-color);
+@tag-primary-light-background-color: var(--lin-primary-color-lightest);
+@tag-primary-plain-background-color: var(--lin-white);
+
+@tag-success-dark-background-color: var(--lin-success-color);
+@tag-success-light-background-color: var(--lin-success-color-lightest);
+@tag-success-plain-background-color: var(--lin-white);
+
+@tag-error-dark-background-color: var(--lin-error-color);
+@tag-error-light-background-color: var(--lin-error-color-lightest);
+@tag-error-plain-background-color: var(--lin-white);
+
+@tag-warning-dark-background-color: var(--lin-warning-color);
+@tag-warning-light-background-color: var(--lin-warning-color-lightest);
+@tag-warning-plain-background-color: var(--lin-white);
+
+
+@tag-primary-dark-border-color: var(--lin-primary-color);
+@tag-primary-light-border-color: var(--lin-primary-color-light);
+@tag-primary-plain-border-color: var(--lin-primary-color);
+
+@tag-success-dark-border-color: var(--lin-success-color);
+@tag-success-light-border-color: var(--lin-success-color-light);
+@tag-success-plain-border-color: var(--lin-success-color);
+
+@tag-error-dark-border-color: var(--lin-error-color);
+@tag-error-light-border-color: var(--lin-error-color-light);
+@tag-error-plain-border-color: var(--lin-error-color);
+
+@tag-warning-dark-border-color: var(--lin-warning-color);
+@tag-warning-light-border-color: var(--lin-warning-color-light);
+@tag-warning-plain-border-color: var(--lin-warning-color);
+
+
+// size
+@tag-large-height: 42px;
+@tag-normal-height: 30px;
+@tag-small-height: 24px;
+@tag-mini-height: 18px;
+
+@tag-large-font-size: var(--lin-font-size-lg);
+@tag-normal-font-size: var(--lin-font-size-md);
+@tag-small-font-size: var(--lin-font-size-sm);
+@tag-mini-font-size: var(--lin-font-size-xs);
+
+@tag-large-padding: 0 var(--lin-padding-lg);
+@tag-normal-padding: 0 var(--lin-padding-md);
+@tag-small-padding: 0 var(--lin-padding-sm);
+@tag-mini-padding: 0 var(--lin-padding-xs);
+
+@tag-border-width: var(--lin-border-width-base);
+
+
+:root {
+  --lin-tag-default-color: @tag-default-color;
+  --lin-tag-default-background-color: @tag-default-background-color;
+  --lin-tag-default-border-color: @tag-default-border-color;
+
+  --lin-tag-primary-dark-color: @tag-primary-dark-color;
+  --lin-tag-primary-dark-background-color: @tag-primary-dark-background-color;
+  --lin-tag-primary-dark-border-color: @tag-primary-dark-border-color;
+
+  --lin-tag-success-dark-color: @tag-success-dark-color;
+  --lin-tag-success-dark-background-color: @tag-success-dark-background-color;
+  --lin-tag-success-dark-border-color: @tag-success-dark-border-color;
+
+  --lin-tag-error-dark-color: @tag-error-dark-color;
+  --lin-tag-error-dark-background-color: @tag-error-dark-background-color;
+  --lin-tag-error-dark-border-color: @tag-error-dark-border-color;
+
+  --lin-tag-warning-dark-color: @tag-warning-dark-color;
+  --lin-tag-warning-dark-background-color: @tag-warning-dark-background-color;
+  --lin-tag-warning-dark-border-color: @tag-warning-dark-border-color;
+
+  --lin-tag-primary-light-color: @tag-primary-light-color;
+  --lin-tag-primary-light-background-color: @tag-primary-light-background-color;
+  --lin-tag-primary-light-border-color: @tag-primary-light-border-color;
+
+  --lin-tag-success-light-color: @tag-success-light-color;
+  --lin-tag-success-light-background-color: @tag-success-light-background-color;
+  --lin-tag-success-light-border-color: @tag-success-light-border-color;
+
+  --lin-tag-error-light-color: @tag-error-light-color;
+  --lin-tag-error-light-background-color: @tag-error-light-background-color;
+  --lin-tag-error-light-border-color: @tag-error-light-border-color;
+
+  --lin-tag-warning-light-color: @tag-warning-light-color;
+  --lin-tag-warning-light-background-color: @tag-warning-light-background-color;
+  --lin-tag-warning-light-border-color: @tag-warning-light-border-color;
+
+  --lin-tag-primary-plain-color: @tag-primary-plain-color;
+  --lin-tag-primary-plain-background-color: @tag-primary-plain-background-color;
+  --lin-tag-primary-plain-border-color: @tag-primary-plain-border-color;
+
+  --lin-tag-success-plain-color: @tag-success-plain-color;
+  --lin-tag-success-plain-background-color: @tag-success-plain-background-color;
+  --lin-tag-success-plain-border-color: @tag-success-plain-border-color;
+
+  --lin-tag-error-plain-color: @tag-error-plain-color;
+  --lin-tag-error-plain-background-color: @tag-error-plain-background-color;
+  --lin-tag-error-plain-border-color: @tag-error-plain-border-color;
+
+  --lin-tag-warning-plain-color: @tag-warning-plain-color;
+  --lin-tag-warning-plain-background-color: @tag-warning-plain-background-color;
+  --lin-tag-warning-plain-border-color: @tag-warning-plain-border-color;
+
+
+  //size
+  --lin-tag-large-height: @tag-large-height;
+  --lin-tag-large-padding: @tag-large-padding;
+  --lin-tag-large-font-size: @tag-large-font-size;
+  
+  --lin-tag-normal-height: @tag-normal-height;
+  --lin-tag-normal-padding: @tag-normal-padding;
+  --lin-tag-normal-font-size: @tag-normal-font-size;
+  
+  --lin-tag-small-height: @tag-small-height;
+  --lin-tag-small-padding: @tag-small-padding;
+  --lin-tag-small-font-size: @tag-small-font-size;
+
+  --lin-tag-mini-height: @tag-mini-height;
+  --lin-tag-mini-padding: @tag-mini-padding;
+  --lin-tag-mini-font-size: @tag-mini-font-size;
+  
+}
+
+
+.lin-tag {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  
+  &--default {
+    color: var(--lin-tag-default-color);
+    background: var(--lin-tag-default-background-color);
+    border: 1px solid var(--lin-tag-default-border-color);
+  }
+
+  &--primary {
+    color: var(--lin-tag-primary-dark-color);
+    background: var(--lin-tag-primary-dark-background-color);
+    border: 1px solid var(--lin-tag-primary-dark-border-color);
+  }
+
+  &--primary&--light {
+    color: var(--lin-tag-primary-light-color);
+    background: var(--lin-tag-primary-light-background-color);
+    border: 1px solid var(--lin-tag-primary-light-border-color);
+  }
+
+  &--primary&--plain {
+    color: var(--lin-tag-primary-plain-color);
+    background: var(--lin-tag-primary-plain-background-color);
+    border: 1px solid var(--lin-tag-primary-plain-border-color);
+  }
+
+  &--success {
+    color: var(--lin-tag-success-dark-color);
+    background: var(--lin-tag-success-dark-background-color);
+    border: 1px solid var(--lin-tag-success-dark-border-color);
+  }
+
+  &--success&--light {
+    color: var(--lin-tag-success-light-color);
+    background: var(--lin-tag-success-light-background-color);
+    border: 1px solid var(--lin-tag-success-light-border-color);
+  }
+
+  &--success&--plain {
+    color: var(--lin-tag-success-plain-color);
+    background: var(--lin-tag-success-plain-background-color);
+    border: 1px solid var(--lin-tag-success-plain-border-color);
+  }
+
+  &--error {
+    color: var(--lin-tag-error-dark-color);
+    background: var(--lin-tag-error-dark-background-color);
+    border: 1px solid var(--lin-tag-error-dark-border-color);
+  }
+
+  &--error&--light {
+    color: var(--lin-tag-error-light-color);
+    background: var(--lin-tag-error-light-background-color);
+    border: 1px solid var(--lin-tag-error-light-border-color);
+  }
+
+  &--error&--plain {
+    color: var(--lin-tag-error-plain-color);
+    background: var(--lin-tag-error-plain-background-color);
+    border: 1px solid var(--lin-tag-error-plain-border-color);
+  }
+
+  &--warning {
+    color: var(--lin-tag-warning-dark-color);
+    background: var(--lin-tag-warning-dark-background-color);
+    border: 1px solid var(--lin-tag-warning-dark-border-color);
+  }
+
+  &--warning&--light {
+    color: var(--lin-tag-warning-light-color);
+    background: var(--lin-tag-warning-light-background-color);
+    border: 1px solid var(--lin-tag-warning-light-border-color);
+  }
+
+  &--warning&--plain {
+    color: var(--lin-tag-warning-plain-color);
+    background: var(--lin-tag-warning-plain-background-color);
+    border: 1px solid var(--lin-tag-warning-plain-border-color);
+  }
+
+  &--normal {
+    height: var(--lin-tag-normal-height);
+    padding: var(--lin-tag-normal-padding);
+    font-size: var(--lin-tag-normal-font-size);
+    &.is-round{
+      border-radius: 6px;
+    }
+  }
+
+  &--large {
+    height: var(--lin-tag-large-height);
+    padding: var(--lin-tag-large-padding);
+    font-size: var(--lin-tag-large-font-size);
+    &.is-round{
+      border-radius: 10px;
+    }
+  }
+
+  &--small {
+    height: var(--lin-tag-small-height);
+    padding: var(--lin-tag-small-padding);
+    font-size: var(--lin-tag-small-font-size);
+    &.is-round{
+      border-radius: 4px;
+    }
+  }
+
+  &--mini {
+    height: var(--lin-tag-mini-height);
+    padding: var(--lin-tag-mini-padding);
+    font-size: var(--lin-tag-mini-font-size);
+    &.is-round{
+      border-radius: 4px;
+    }
+  }
+}
