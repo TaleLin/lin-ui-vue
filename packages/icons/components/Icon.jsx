@@ -1,4 +1,5 @@
 import { h, defineComponent } from 'vue'
+import './icon.less'
 
 const generateVNode = (node, key) => {
   return h(
@@ -23,7 +24,9 @@ const Icon = defineComponent({
       ...icon.vNode,
       attrs: { ...attrs, fill: 'currentColor', width: '1em', height: '1em' },
     }
-    return <span>{icon && generateVNode(vNode, icon.name)}</span>
+    return (
+      <span class="lin-icon">{icon && generateVNode(vNode, icon.name)}</span>
+    )
   },
 })
 

@@ -5,12 +5,15 @@
         b(),
         b(`--${size}`),
         b(`--${type}`),
-        [text, b(`--text`)],
-        [disabled, b(`--disabled`)]
+        b(`--${shape}`),
+        [disabled, 'is-disabled'],
+        [block, 'is-block'],
+        [plain && !text, 'is-plain'],
+        [text, 'is-text']
       )
     "
   >
-    <div>
+    <div :class="b('__content')">
       <slot />
     </div>
   </button>

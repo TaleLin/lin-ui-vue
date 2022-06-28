@@ -20,6 +20,27 @@
 @button-warning-background-color: var(--lin-warning-color);
 @button-warning-border-color: var(--lin-warning-color);
 
+// disabled
+@button-default-disabled-color: var(--lin-gray-6);
+@button-primary-disabled-color: var(--lin-white);
+@button-success-disabled-color: var(--lin-white);
+@button-error-disabled-color: var(--lin-white);
+@button-warning-disabled-color: var(--lin-white);
+
+@button-default-disabled-background-color: var(--lin-white);
+@button-primary-disabled-background-color: var(--lin-primary-color-light);
+@button-success-disabled-background-color: var(--lin-success-color-light);
+@button-error-disabled-background-color: var(--lin-error-color-light);
+@button-warning-disabled-background-color: var(--lin-warning-color-light);
+
+@button-default-disabled-border-color: var(--lin-gray-3);
+@button-primary-disabled-border-color: var(--lin-primary-color-light);
+@button-success-disabled-border-color: var(--lin-success-color-light);
+@button-error-disabled-border-color: var(--lin-error-color-light);
+@button-warning-disabled-border-color: var(--lin-warning-color-light);
+
+
+
 // size
 @button-large-height: 50px;
 @button-normal-height: 44px;
@@ -37,6 +58,8 @@
 @button-mini-padding: 0 var(--lin-padding-xs);
 
 @button-border-width: var(--lin-border-width-base);
+
+@button-semicircle-radius: 999px;
 
 :root {
   // type css
@@ -60,22 +83,53 @@
   --lin-button-warning-background-color: @button-warning-background-color;
   --lin-button-warning-border-color: @button-warning-border-color;
 
+   // disabled
+   --lin-button-default-disabled-color: @button-default-disabled-color;
+   --lin-button-default-disabled-background-color: @button-default-disabled-background-color;
+   --lin-button-default-disabled-border-color: @button-default-disabled-border-color;
+
+   --lin-button-primary-disabled-color: @button-primary-disabled-color;
+   --lin-button-primary-disabled-background-color: @button-primary-disabled-background-color;
+   --lin-button-primary-disabled-border-color: @button-primary-disabled-border-color;
+
+   --lin-button-success-disabled-color: @button-success-disabled-color;
+   --lin-button-success-disabled-background-color: @button-success-disabled-background-color;
+   --lin-button-success-disabled-border-color: @button-success-disabled-border-color;
+
+   --lin-button-error-disabled-color: @button-error-disabled-color;
+   --lin-button-error-disabled-background-color: @button-error-disabled-background-color;
+   --lin-button-error-disabled-border-color: @button-error-disabled-border-color;
+
+   --lin-button-warning-disabled-color: @button-warning-disabled-color;
+   --lin-button-warning-disabled-background-color: @button-warning-disabled-background-color;
+   --lin-button-warning-disabled-border-color: @button-warning-disabled-border-color;
+
   //size
   --lin-button-large-height: @button-large-height;
   --lin-button-large-padding: @button-large-padding;
   --lin-button-large-font-size: @button-large-font-size;
+  --lin-button-large-circle-padding: 18px;
+  --lin-button-large-round-radius: 12px;
 
   --lin-button-normal-height: @button-normal-height;
   --lin-button-normal-padding: @button-normal-padding;
   --lin-button-normal-font-size: @button-normal-font-size;
+  --lin-button-normal-circle-padding: 14px;
+  --lin-button-normal-round-radius: 8px;
 
   --lin-button-small-height: @button-small-height;
   --lin-button-small-padding: @button-small-padding;
   --lin-button-small-font-size: @button-small-font-size;
+  --lin-button-small-circle-padding: 12px;
+  --lin-button-small-round-radius: 6px;
 
   --lin-button-mini-height: @button-mini-height;
   --lin-button-mini-padding: @button-mini-padding;
   --lin-button-mini-font-size: @button-mini-font-size;
+  --lin-button-mini-circle-padding: 8px;
+  --lin-button-mini-round-radius: 2px;
+
+  --lin-button-semicircle-radius: @button-semicircle-radius;
 }
 
 
@@ -89,34 +143,148 @@
   cursor: pointer;
   -webkit-appearance: none;
 
+  &.is-disabled {
+    cursor: not-allowed;
+  }
+
+  &.is-block {
+    width: 100%;
+  }
+
+  &.is-text{
+    background: none;
+    border-color: transparent;
+  }
+
+  &.is-disabled.is-text{
+    border-color: transparent;
+    background: none;
+  }
+
   &--default {
     color: var(--lin-button-default-color);
     background: var(--lin-button-default-background-color);
-    border: 1px solid var(--lin-button-default-border-color)
+    border: 1px solid var(--lin-button-default-border-color);
+    &.is-disabled {
+      color: var(--lin-button-default-disabled-color);
+      background-color: var(--lin-button-default-disabled-background-color);
+      border-color: var(--lin-button-default-disabled-border-color);
+    }
+    &.is-plain {
+      background-color: var(--lin-white);
+      color: var(--lin-button-default-color);
+    }
+    &.is-text {
+      color: var(--lin-button-default-color);
+    }
+    &.is-disabled.is-plain {
+      color: var(--lin-button-default-disabled-color);
+      border-color: var(--lin-button-default-disabled-border-color);
+    }
+
+    &.is-disabled.is-text {
+      color: var(--lin-button-default-disabled-color);
+    }
   }
 
   &--primary {
     color: var(--lin-button-primary-color);
     background: var(--lin-button-primary-background-color);
-    border: 1px solid var(--lin-button-primary-border-color)
+    border: 1px solid var(--lin-button-primary-border-color);
+    &.is-disabled {
+      color: var(--lin-button-primary-disabled-color);
+      background-color: var(--lin-button-primary-disabled-background-color);
+      border-color: var(--lin-button-primary-disabled-border-color);
+    }
+    &.is-plain{
+      background-color: var(--lin-white);
+      color: var(--lin-button-primary-background-color);
+    }
+    &.is-text {
+      color: var(--lin-button-primary-background-color);
+    }
+    &.is-disabled.is-plain {
+      color: var(--lin-button-primary-disabled-background-color);
+      border-color: var(--lin-button-primary-disabled-background-color);
+    }
+    &.is-disabled.is-text {
+      color: var(--lin-button-primary-disabled-background-color);
+    }
   }
 
   &--success {
     color: var(--lin-button-success-color);
     background: var(--lin-button-success-background-color);
-    border: 1px solid var(--lin-button-success-border-color)
+    border: 1px solid var(--lin-button-success-border-color);
+    &.is-disabled {
+      color: var(--lin-button-success-disabled-color);
+      background-color: var(--lin-button-success-disabled-background-color);
+      border-color: var(--lin-button-success-disabled-border-color);
+    }
+    &.is-plain{
+      background-color: var(--lin-white);
+      color: var(--lin-button-success-background-color);
+    }
+    &.is-text {
+      color: var(--lin-button-success-background-color);
+    }
+    &.is-disabled.is-plain {
+      color: var(--lin-button-success-disabled-background-color);
+      border-color: var(--lin-button-success-disabled-background-color);
+    }
+    &.is-disabled.is-text {
+      color: var(--lin-button-success-disabled-background-color);
+    }
   }
 
   &--error {
     color: var(--lin-button-error-color);
     background: var(--lin-button-error-background-color);
-    border: 1px solid var(--lin-button-error-border-color)
+    border: 1px solid var(--lin-button-error-border-color);
+    &.is-disabled {
+      color: var(--lin-button-error-disabled-color);
+      background-color: var(--lin-button-error-disabled-background-color);
+      border-color: var(--lin-button-error-disabled-border-color);
+    }
+    &.is-plain {
+      background-color: var(--lin-white);
+      color: var(--lin-button-error-background-color);
+    }
+    &.is-text {
+      color: var(--lin-button-error-background-color);
+    }
+    &.is-disabled.is-plain {
+      color: var(--lin-button-error-disabled-background-color);
+      border-color: var(--lin-button-error-disabled-background-color);
+    }
+    &.is-disabled.is-text {
+      color: var(--lin-button-error-disabled-background-color);
+    }
   }
 
   &--warning {
     color: var(--lin-button-warning-color);
     background: var(--lin-button-warning-background-color);
-    border: 1px solid var(--lin-button-warning-border-color)
+    border: 1px solid var(--lin-button-warning-border-color);
+    &.is-disabled {
+      color: var(--lin-button-warning-disabled-color);
+      background-color: var(--lin-button-warning-disabled-background-color);
+      border-color: var(--lin-button-warning-disabled-border-color);
+    }
+    &.is-plain{
+      background-color: var(--lin-white);
+      color: var(--lin-button-warning-background-color);
+    }
+    &.is-text {
+      color: var(--lin-button-warning-background-color);
+    }
+    &.is-disabled.is-plain {
+      color: var(--lin-button-warning-disabled-background-color);
+      border-color: var(--lin-button-warning-disabled-background-color);
+    }
+    &.is-disabled.is-text {
+      color: var(--lin-button-warning-disabled-background-color);
+    }
   }
 
   &--normal {
@@ -142,4 +310,50 @@
     padding: var(--lin-button-mini-padding);
     font-size: var(--lin-button-mini-font-size);
   }
+
+  &--circle {
+    border-radius: 50%;
+  }
+
+  &--circle &__content {
+    line-height: 0;
+  }
+
+  &--normal&--circle {
+    padding: var(--lin-button-normal-circle-padding);
+    height: unset;
+  }
+
+  &--large&--circle {
+    padding: var(--lin-button-large-circle-padding);
+    height: unset;
+  }
+
+  &--small&--circle {
+    padding: var(--lin-button-small-circle-padding);
+    height: unset;
+  }
+
+  &--mini&--circle {
+    padding: var(--lin-button-mini-circle-padding);
+    height: unset;
+  }
+
+  &--semicircle{
+    border-radius: var(--lin-button-semicircle-radius);
+  }
+
+  &--normal&--round{
+    border-radius: var(--lin-button-normal-round-radius);
+  }
+  &--large&--round{
+    border-radius: var(--lin-button-large-round-radius);
+  }
+  &--small&--round{
+    border-radius: var(--lin-button-small-round-radius);
+  }
+  &--mini&--round{
+    border-radius: var(--lin-button-mini-round-radius);
+  }
+  
 }

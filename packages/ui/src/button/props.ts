@@ -8,6 +8,10 @@ function sizeValidator(size: string): boolean {
   return ['normal', 'mini', 'small', 'large'].includes(size)
 }
 
+function shapeValidator(shape: string): boolean {
+  return ['square', 'circle', 'semicircle', 'round'].includes(shape)
+}
+
 export const props = {
   type: {
     type: String as PropType<
@@ -26,6 +30,19 @@ export const props = {
     default: false,
   },
   text: {
+    type: Boolean,
+    default: false,
+  },
+  plain: {
+    type: Boolean,
+    default: false,
+  },
+  shape: {
+    type: String as PropType<'square' | 'circle' | 'semicircle' | 'round'>,
+    default: 'square',
+    validator: shapeValidator,
+  },
+  block: {
     type: Boolean,
     default: false,
   },
