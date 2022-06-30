@@ -3,5 +3,6 @@
   "button",
   "icon",
   "tag",
-  "config-provider"
+  "config-provider",
+  "card"
 ]

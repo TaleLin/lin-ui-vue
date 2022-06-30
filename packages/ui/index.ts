@@ -1,5 +1,6 @@
 import Avatar from './src/avatar/index'
 import Button from './src/button/index'
+import Card from './src/card/index'
 import ConfigProvider from './src/config-provider/index'
 import Icon from './src/icon/index'
 import Tag from './src/tag/index'
@@ -8,6 +9,7 @@ import Tag from './src/tag/index'
 const components = [
   Avatar,
   Button,
+  Card,
   ConfigProvider,
   Icon,
   Tag
@@ -23,6 +25,7 @@ export default {
   install,
   Avatar,
   Button,
+  Card,
   ConfigProvider,
   Icon,
   Tag,
