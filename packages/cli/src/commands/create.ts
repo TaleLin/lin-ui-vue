@@ -17,6 +17,7 @@ import {
   CWD,
 } from '../constant'
 import { generateEntry } from '../generate/generateEntry'
+import logger from '../utils/logger'
 
 function generateComponentVue(name: string, outputPath: string) {
   const res = fs.readFileSync(ComponentTemplateEjs)
@@ -83,8 +84,6 @@ function generateLessEntry(name: string) {
 export async function create(name: string) {
   const outputPath = ComponentDir(name)
 
-  generateLessEntry(name)
-
   if (fs.pathExistsSync(outputPath)) {
     const { cover } = await inquirer.prompt([
       {
@@ -97,8 +96,22 @@ export async function create(name: string) {
     if (!cover) {
       process.exit(1)
     }
+    const { confirm } = await inquirer.prompt([
+      {
+        type: 'confirm',
+        name: 'confirm',
+        message: '覆盖组件将重置为初始化组件模板，是否确定要覆盖？',
+        default: false,
+      },
+    ])
+    if (!confirm) {
+      process.exit(1)
+    }
+
     fs.emptyDirSync(outputPath)
   }
+
+  generateLessEntry(name)
 
   fs.ensureDirSync(outputPath)
   generateComponentVue(name, outputPath)
@@ -111,4 +124,11 @@ export async function create(name: string) {
   generateUIDoc()
   generateEntry()
   generateLessEntry(name)
+
+  logger.success(`组件 ${name} 创建成功！`)
+  logger.success(`组件 ${name} 文件夹地址: src/${name}`)
+  logger.success(`|- docs/ # 组件文档`)
+  logger.success(`|- demo/ # 组件使用案例`)
+  logger.success(`|- ${name}.vue/ # Vue 组件`)
+  logger.success(`|- index.ts/ # 组件入口文件`)
 }
