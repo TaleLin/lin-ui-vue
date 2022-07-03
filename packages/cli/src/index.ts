@@ -18,7 +18,11 @@ program
   .option('-s,--simple', 'only start sever, not create config ')
   .action(dev)
 
-program.command('create <name>').description('Create Component').action(create)
+program
+  .command('create <name> [cnName]')
+  .option('-s,--simple', 'only start sever, not create config ')
+  .description('Create Component')
+  .action(create)
 
 program.command('build').description('Run build').action(buildApp)
 

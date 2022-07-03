@@ -14,7 +14,6 @@ import {
   ComponentDocsEjs,
   ComponentExampleEjs,
   ComponentDir,
-  CWD,
 } from '../constant'
 import { generateEntry } from '../generate/generateEntry'
 import logger from '../utils/logger'
@@ -49,9 +48,13 @@ function generateComponentProps(name: string, outputPath: string) {
   fs.writeFileSync(resolve(outputPath, `props.ts`), content)
 }
 
-function generateComponentDocs(name: string, outputPath: string) {
+function generateComponentDocs(
+  name: string,
+  cnName: string,
+  outputPath: string
+) {
   const res = fs.readFileSync(ComponentDocsEjs)
-  const content = ejs.render(res.toString(), { name })
+  const content = ejs.render(res.toString(), { name, cnName })
   fs.ensureDirSync(resolve(outputPath, 'docs'))
   fs.writeFileSync(resolve(outputPath, `docs/README.md`), content)
 }
@@ -81,7 +84,7 @@ function generateLessEntry(name: string) {
   )
 }
 
-export async function create(name: string) {
+export async function create(name: string, cnName: string) {
   const outputPath = ComponentDir(name)
 
   if (fs.pathExistsSync(outputPath)) {
@@ -111,6 +114,21 @@ export async function create(name: string) {
     fs.emptyDirSync(outputPath)
   }
 
+  if (!cnName) {
+    const { inputCnName } = await inquirer.prompt([
+      {
+        type: 'input',
+        name: 'inputCnName',
+        message: '请输入组件的中文名',
+        default: '',
+        validate(value) {
+          return !!value
+        },
+      },
+    ])
+    cnName = inputCnName
+  }
+
   generateLessEntry(name)
 
   fs.ensureDirSync(outputPath)
@@ -118,7 +136,7 @@ export async function create(name: string) {
   generateComponentLess(name, outputPath)
   generateComponentIndex(name, outputPath)
   generateComponentProps(name, outputPath)
-  generateComponentDocs(name, outputPath)
+  generateComponentDocs(name, cnName, outputPath)
   generateComponentExample(name, outputPath)
   appendComponentList(name)
   generateUIDoc()
