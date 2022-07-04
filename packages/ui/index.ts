@@ -1,17 +1,17 @@
 import Avatar from './src/avatar/index'
 import Button from './src/button/index'
-import Card from './src/card/index'
 import ConfigProvider from './src/config-provider/index'
 import Icon from './src/icon/index'
+import Image from './src/image/index'
 import Tag from './src/tag/index'
 
 // eslint-disable-next-line prettier/prettier
 const components = [
   Avatar,
   Button,
-  Card,
   ConfigProvider,
   Icon,
+  Image,
   Tag
 ]
 
@@ -25,8 +25,8 @@ export default {
   install,
   Avatar,
   Button,
-  Card,
   ConfigProvider,
   Icon,
+  Image,
   Tag,
 }

@@ -19,14 +19,9 @@
 import { defineComponent, computed } from 'vue'
 import { createComponentName, createNamespace } from '../utils/components'
 import { props as propsDefine } from './props'
+import { isPixel } from '../utils'
 
 const { b, computedClasses } = createNamespace('tag')
-
-const isPixel = (value: any) => {
-  if (typeof value !== 'string') return false
-  const reg = /(\d+(\.\d*)?)+(px|rem|vh|vw|em|%)/gi
-  return reg.test(value)
-}
 
 export default defineComponent({
   name: createComponentName('Tag'),

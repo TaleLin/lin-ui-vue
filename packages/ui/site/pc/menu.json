@@ -33,15 +33,15 @@
       "parent": "基础"
     },
     {
-      "title": "card card",
-      "order": 1,
-      "routePath": "/card",
-      "parent": "基础"
-    },
-    {
       "title": "config-provider config-provider",
       "order": 1,
       "routePath": "/config-provider",
+      "parent": "基础"
+    },
+    {
+      "title": "image 图片",
+      "order": 1,
+      "routePath": "/image",
       "parent": "基础"
     },
     {

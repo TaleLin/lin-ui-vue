@@ -10,11 +10,6 @@ export default [
     component: () => import('/Users/daipengpeng/works/Lin/lin-ui-vue/packages/ui/src/button/example/index.vue')
   },
   {
-    path: '/card',
-    // eslint-disable-next-line prettier/prettier
-    component: () => import('/Users/daipengpeng/works/Lin/lin-ui-vue/packages/ui/src/card/example/index.vue')
-  },
-  {
     path: '/config-provider',
     // eslint-disable-next-line prettier/prettier
     component: () => import('/Users/daipengpeng/works/Lin/lin-ui-vue/packages/ui/src/config-provider/example/index.vue')
@@ -23,6 +18,11 @@ export default [
     path: '/icon',
     // eslint-disable-next-line prettier/prettier
     component: () => import('/Users/daipengpeng/works/Lin/lin-ui-vue/packages/ui/src/icon/example/index.vue')
+  },
+  {
+    path: '/image',
+    // eslint-disable-next-line prettier/prettier
+    component: () => import('/Users/daipengpeng/works/Lin/lin-ui-vue/packages/ui/src/image/example/index.vue')
   },
   {
     path: '/tag',

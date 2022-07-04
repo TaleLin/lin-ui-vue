@@ -92,7 +92,7 @@ export async function create(name: string, cnName: string) {
       {
         type: 'confirm',
         name: 'cover',
-        message: '该组件文件夹已存在，是否要覆盖？',
+        message: '该组件文件目录已存在，是否要覆盖？',
         default: false,
       },
     ])
@@ -144,7 +144,7 @@ export async function create(name: string, cnName: string) {
   generateLessEntry(name)
 
   logger.success(`组件 ${name} 创建成功！`)
-  logger.success(`组件 ${name} 文件夹地址: src/${name}`)
+  logger.success(`组件 ${name} 文件目录: src/${name}`)
   logger.success(`|- docs/ # 组件文档`)
   logger.success(`|- demo/ # 组件使用案例`)
   logger.success(`|- ${name}.vue/ # Vue 组件`)
