@@ -1,21 +1,19 @@
 <template>
   <div>
     <lin-image
-      src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg"
+      src="https://t7.baidu.com/it/u=1375471712,1916548204&fm=193&f=GIF"
       width="10em"
       height="10em"
       radius="10px"
-      fit="contain"
-      position="center"
+      fit="cover"
     ></lin-image>
 
     <lin-image
-      src="https://t7.baidu.com/it/u=2749005241,3756993511&fm=193&f=GIF"
+      src="https://t7.baidu.com/it/u=1318833646,598769731&fm=193&f=GIF"
       width="10em"
       height="10em"
       radius="10px"
-      fit="contain"
-      position="10px 20px"
+      fit="fill"
     ></lin-image>
   </div>
 </template>
