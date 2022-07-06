@@ -7,6 +7,8 @@ const Lazy: Directive & Plugin = {
 
     app.directive('lin-lazy', {
       mounted: lazy.mounted.bind(lazy),
+      updated: lazy.update.bind(lazy),
+      unmounted: lazy.unmount.bind(lazy),
     })
   },
 }

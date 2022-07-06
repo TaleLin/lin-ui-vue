@@ -17,4 +17,5 @@ export enum State {
 
 export interface ImageManagerOptions extends Required<LazyOptions> {
   el: HTMLElement
+  arg?: 'background' | 'image'
 }

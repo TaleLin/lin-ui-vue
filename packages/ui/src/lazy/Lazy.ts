@@ -45,7 +45,6 @@ class Lazy {
     this.observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          console.log(entry.isIntersecting)
           if (entry.isIntersecting) {
             const manager = this.managerQueue.find(
               (manager) => manager.el === entry.target
@@ -71,15 +70,43 @@ class Lazy {
     el: HTMLElement,
     binding: DirectiveBinding<string | LazyOptions>
   ) {
+    const arg = binding.arg === undefined ? 'image' : 'background'
     const { src, error, loading } = await this.formatValue(binding.value)
     const manager = new ImageManager({
       el,
       src,
+      arg,
       error,
       loading,
     })
     this.managerQueue.push(manager)
     this.observer?.observe(el)
+  }
+
+  async update(
+    el: HTMLElement,
+    binding: DirectiveBinding<string | LazyOptions>
+  ) {
+    const { src, error, loading } = await this.formatValue(binding.value)
+    const manager = this.managerQueue.find((manager) => {
+      return manager.el === el
+    })
+    if (manager) {
+      manager.update({
+        src,
+        error,
+        loading,
+      })
+    }
+  }
+
+  unmount(el: HTMLElement): void {
+    const manager = this.managerQueue.find((manager) => {
+      return manager.el === el
+    })
+    if (manager) {
+      this.removeManager(manager)
+    }
   }
 
   removeManager(manger: ImageManager) {

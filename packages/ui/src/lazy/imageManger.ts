@@ -1,6 +1,6 @@
 import { render, h } from 'vue'
 import type { Component } from 'vue'
-import { State, ImageManagerOptions } from './types'
+import { State, ImageManagerOptions, LazyOptions } from './types'
 
 export type LazyHTMLElement = HTMLElement & { _lazy: { state: State } }
 
@@ -23,6 +23,8 @@ export default class ImageManger {
 
   src: string
 
+  arg: 'background' | 'image'
+
   error: string | Component
 
   loading: string | Component
@@ -37,6 +39,7 @@ export default class ImageManger {
     this.error = options.error
     this.loading = options.loading
     this.state = State.LOADING
+    this.arg = options.arg || 'image'
 
     this.render(this.loading)
   }
@@ -47,9 +50,25 @@ export default class ImageManger {
     }
   }
 
+  update({ error, loading, src }: Required<LazyOptions>) {
+    this.error = error
+    this.loading = loading
+    if (src === this.src) {
+      this.state === State.ERROR && this.render(error)
+      this.state === State.LOADING && this.render(loading)
+    } else {
+      this.src = src
+      this.state = State.LOADING
+      this.load()
+    }
+  }
+
   render(src: string | Component) {
     if (typeof src === 'string') {
-      this.el.setAttribute('src', src)
+      this.arg === 'image' && this.el.setAttribute('src', src)
+      if (this.arg === 'background') {
+        this.el.style.backgroundImage = `url(${src})`
+      }
     }
   }
 
