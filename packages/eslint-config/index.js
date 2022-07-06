@@ -19,6 +19,7 @@ module.exports = {
   },
   plugins: ['@typescript-eslint', 'prettier'],
   rules: {
+    'no-shadow': 'off',
     'no-console': 'off',
     'no-plusplus': 'off',
     'func-names': 'off',
