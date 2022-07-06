@@ -1,8 +1,8 @@
 import { render, h } from 'vue'
-import type { Component } from 'vue'
+import type { Component, DefineComponent } from 'vue'
 import { State, ImageManagerOptions, LazyOptions } from './types'
 
-export type LazyHTMLElement = HTMLElement & { _lazy: { state: State } }
+export type LazyHTMLElement = HTMLElement & { _lazy: ImageManger }
 
 export function loadImage(src: string) {
   return new Promise<void>((resolve, reject) => {
@@ -33,7 +33,7 @@ export default class ImageManger {
 
   constructor(options: ImageManagerOptions) {
     const el = options.el as LazyHTMLElement
-    el._lazy = { state: State.LOADING }
+    el._lazy = this
     this.el = el
     this.src = options.src
     this.error = options.error
@@ -48,6 +48,11 @@ export default class ImageManger {
     if (this.state === State.LOADING) {
       this.loadImage()
     }
+  }
+
+  reload() {
+    this.state = State.LOADING
+    this.load()
   }
 
   update({ error, loading, src }: Required<LazyOptions>) {
@@ -76,8 +81,10 @@ export default class ImageManger {
     if (typeof this.error === 'string') {
       this.render(this.error)
     } else {
+      // console.log(this.error.render())
+      render(h(this.error), this.el.parentElement as HTMLElement)
       // render(h('div', 'sss'), this.el.parentElement as HTMLElement)
-      // this.el.style.display = 'none'
+      this.el.style.display = 'none'
     }
   }
 

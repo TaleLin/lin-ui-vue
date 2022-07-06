@@ -9,11 +9,17 @@
       v-lin-lazy="item.url"
       class="lin-lazy-image"
     />
-    <img
-      v-lin-lazy="'https://t7.baidu.com/it/u=1318833646,598769731&fm=193&f=GIF'"
-      class="lin-lazy-image"
-    />
-    <img
+    <div>
+      <img
+        ref="imgRef"
+        v-lin-lazy="{
+          src: 'https://t7.baidu.com/it/u=1318833646,598769731&fm=193&f=GIF11',
+          error: ImageError,
+        }"
+        class="lin-lazy-image"
+      />
+    </div>
+    <!-- <img
       v-lin-lazy="'https://t7.baidu.com/it/u=1318833646,598769731&fm=193&f=GIF'"
       class="lin-lazy-image"
     />
@@ -22,16 +28,21 @@
         'https://t7.baidu.com/it/u=1318833646,598769731&fm=193&f=GIF'
       "
       class="lin-lazy-image"
-    ></div>
+    ></div> -->
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from 'vue'
+import { defineComponent, reactive, ref } from 'vue'
+import ImageError from './imageError.vue'
 // import type { LazyHTMLElement } from '../imageManger'
 
 export default defineComponent({
+  // components: {
+  //   ImageError,
+  // },
   setup() {
+    const imgRef = ref()
     const list = reactive([
       {
         url: 'https://t7.baidu.com/it/u=4198287529,2774471735&fm=193&f=GIF',
@@ -53,6 +64,7 @@ export default defineComponent({
 
     const changeImage = () => {
       list[3].url = '111'
+      console.log(imgRef.value._lazy)
     }
     // const handleLoad = (e: Event) => {
     //   const el = e.currentTarget as LazyHTMLElement
@@ -62,6 +74,8 @@ export default defineComponent({
     return {
       list,
       changeImage,
+      ImageError,
+      imgRef,
       // handleLoad,
     }
   },
