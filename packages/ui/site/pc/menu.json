@@ -45,6 +45,12 @@
       "parent": "基础"
     },
     {
+      "title": "lazy 懒加载",
+      "order": 1,
+      "routePath": "/lazy",
+      "parent": "基础"
+    },
+    {
       "title": "tag tag",
       "order": 1,
       "routePath": "/tag",

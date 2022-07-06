@@ -1,6 +1,13 @@
 <template>
   <div :class="b()" :style="wrapStyle">
-    <img :src="src" :class="b(`__img`)" :alt="alt" :style="imgStyle" />
+    <img
+      v-if="lazy"
+      v-lin-lazy="src"
+      :class="b(`__img`)"
+      :alt="alt"
+      :style="imgStyle"
+    />
+    <img v-else :src="src" :class="b(`__img`)" :alt="alt" :style="imgStyle" />
   </div>
 </template>
 

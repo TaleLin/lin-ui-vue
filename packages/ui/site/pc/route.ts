@@ -64,6 +64,14 @@ export default [
     },
   },
   {
+    path: '/lazy',
+    // eslint-disable-next-line prettier/prettier
+    component: () => import('/Users/daipengpeng/works/Lin/lin-ui-vue/packages/ui/src/lazy/docs/README.md'),
+    meta: {
+      parent: '基础',
+    },
+  },
+  {
     path: '/tag',
     // eslint-disable-next-line prettier/prettier
     component: () => import('/Users/daipengpeng/works/Lin/lin-ui-vue/packages/ui/src/tag/docs/README.md'),
