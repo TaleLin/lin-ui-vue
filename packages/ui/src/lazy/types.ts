@@ -1,8 +1,15 @@
-import type { Component } from 'vue'
+import type { DefineComponent } from 'vue'
+
+export type StateOptions =
+  | string
+  | {
+      component: DefineComponent
+      props: Record<string, any>
+    }
 
 export interface GlobalLazyOptions {
-  error?: string | Component
-  loading?: string | Component
+  error?: StateOptions
+  loading?: StateOptions
 }
 
 export interface LazyOptions extends GlobalLazyOptions {

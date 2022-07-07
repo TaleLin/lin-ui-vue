@@ -1,6 +1,5 @@
 import { render, h } from 'vue'
-import type { Component, DefineComponent } from 'vue'
-import { State, ImageManagerOptions, LazyOptions } from './types'
+import { State, ImageManagerOptions, LazyOptions, StateOptions } from './types'
 
 export type LazyHTMLElement = HTMLElement & { _lazy: ImageManger }
 
@@ -25,9 +24,9 @@ export default class ImageManger {
 
   arg: 'background' | 'image'
 
-  error: string | Component
+  error: StateOptions
 
-  loading: string | Component
+  loading: StateOptions
 
   state: State
 
@@ -41,7 +40,7 @@ export default class ImageManger {
     this.state = State.LOADING
     this.arg = options.arg || 'image'
 
-    this.render(this.loading)
+    this.renderLoading()
   }
 
   load() {
@@ -59,8 +58,8 @@ export default class ImageManger {
     this.error = error
     this.loading = loading
     if (src === this.src) {
-      this.state === State.ERROR && this.render(error)
-      this.state === State.LOADING && this.render(loading)
+      this.state === State.ERROR && this.removeError()
+      this.state === State.LOADING && this.removeLoading()
     } else {
       this.src = src
       this.state = State.LOADING
@@ -68,7 +67,7 @@ export default class ImageManger {
     }
   }
 
-  render(src: string | Component) {
+  render(src: StateOptions) {
     if (typeof src === 'string') {
       this.arg === 'image' && this.el.setAttribute('src', src)
       if (this.arg === 'background') {
@@ -81,11 +80,50 @@ export default class ImageManger {
     if (typeof this.error === 'string') {
       this.render(this.error)
     } else {
-      // console.log(this.error.render())
-      render(h(this.error), this.el.parentElement as HTMLElement)
-      // render(h('div', 'sss'), this.el.parentElement as HTMLElement)
+      const { component: errorComponent, props } = this.error
+      render(
+        h('div', { class: 'lin-lazy-error' }, h(errorComponent, props)),
+        this.el.parentElement as HTMLElement
+      )
       this.el.style.display = 'none'
     }
+  }
+
+  renderLoading() {
+    if (typeof this.loading === 'string') {
+      this.render(this.loading)
+    } else {
+      const { component: errorComponent, props } = this.loading
+      render(
+        h('div', { class: 'lin-lazy-loading' }, h(errorComponent, props)),
+        this.el.parentElement as HTMLElement
+      )
+      this.el.style.display = 'none'
+    }
+  }
+
+  removeLoading() {
+    const children = this.el.parentElement?.children
+    if (!children) return
+    let loadingEl = null
+    for (let i = 0; i < children.length; i++) {
+      if (children[i].className === 'lin-lazy-loading') {
+        loadingEl = children[i]
+      }
+    }
+    loadingEl && loadingEl.remove()
+  }
+
+  removeError() {
+    const children = this.el.parentElement?.children
+    if (!children) return
+    let errorEl = null
+    for (let i = 0; i < children.length; i++) {
+      if (children[i].className === 'lin-lazy-error') {
+        errorEl = children[i]
+      }
+    }
+    errorEl && errorEl.remove()
   }
 
   async loadImage() {
@@ -94,6 +132,9 @@ export default class ImageManger {
       this.render(this.src)
       this.state = State.LOADED
       this.el._lazy.state = State.LOADED
+      this.removeError()
+      this.el.style.display = 'block'
+      // this.removeLoading()
     } catch (error) {
       this.state = State.ERROR
       this.el._lazy.state = State.ERROR

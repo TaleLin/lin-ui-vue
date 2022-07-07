@@ -3,18 +3,36 @@
     <div style="position: fixed">
       <lin-button type="primary" @click="changeImage">修改图片地址</lin-button>
     </div>
-    <img
-      v-for="item in list"
-      :key="item.id"
-      v-lin-lazy="item.url"
-      class="lin-lazy-image"
-    />
+    <div v-for="(item, index) in list" :key="item.id">
+      <img
+        :ref="imgRefs[index]"
+        v-lin-lazy="{
+          src: item.url,
+          error: {
+            component: ImageError,
+            props: {
+              onReload: () => {
+                onReload(index)
+              },
+            },
+          },
+        }"
+        class="lin-lazy-image"
+      />
+    </div>
     <div>
       <img
         ref="imgRef"
         v-lin-lazy="{
-          src: 'https://t7.baidu.com/it/u=1318833646,598769731&fm=193&f=GIF11',
-          error: ImageError,
+          src: 'https://t7.baidu.com/it/u=1318833646,598769731&fm=193&f=GIF',
+          error: {
+            component: ImageError,
+            props: {
+              onReload: () => {
+                onReload(12)
+              },
+            },
+          },
         }"
         class="lin-lazy-image"
       />
@@ -61,6 +79,7 @@ export default defineComponent({
         id: 4,
       },
     ])
+    const imgRefs = ref(list.map((item) => ref()))
 
     const changeImage = () => {
       list[3].url = '111'
@@ -71,11 +90,20 @@ export default defineComponent({
     //   console.log(el._lazy)
     // }
 
+    const onReload = (index: number) => {
+      // console.log(imgRef.value._lazy.removeError())
+      imgRef.value._lazy.loadImage()
+      // console.log(imgRefs.value[index].value[0]._lazy)
+      // console.log(imgRefs[index].value[0]._lazy)
+    }
+
     return {
       list,
       changeImage,
       ImageError,
       imgRef,
+      onReload,
+      imgRefs,
       // handleLoad,
     }
   },

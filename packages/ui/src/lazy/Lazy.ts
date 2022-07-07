@@ -1,5 +1,5 @@
-import type { DirectiveBinding, Component } from 'vue'
-import { LazyOptions, State, GlobalLazyOptions } from './types'
+import type { DirectiveBinding } from 'vue'
+import { LazyOptions, State, GlobalLazyOptions, StateOptions } from './types'
 import ImageManager, { loadImage } from './imageManger'
 import { DEFAULT_LOADING, DEFAULT_ERROR } from './constant'
 
@@ -25,7 +25,7 @@ class Lazy {
     })
   }
 
-  async initGlobalLoading(loading: string | Component) {
+  async initGlobalLoading(loading: StateOptions) {
     if (typeof loading === 'string') {
       this.loading = (await this.checkImage(loading)) || DEFAULT_LOADING
     } else {
@@ -33,7 +33,7 @@ class Lazy {
     }
   }
 
-  async initGlobalError(error: string | Component) {
+  async initGlobalError(error: StateOptions) {
     if (typeof error === 'string') {
       this.error = (await this.checkImage(error)) || DEFAULT_ERROR
     } else {
