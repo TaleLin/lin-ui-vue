@@ -81,11 +81,13 @@ export default class ImageManger {
       this.render(this.error)
     } else {
       const { component: errorComponent, props } = this.error
+      const container =
+        this.arg === 'image' ? (this.el.parentElement as HTMLElement) : this.el
       render(
         h('div', { class: 'lin-lazy-error' }, h(errorComponent, props)),
-        this.el.parentElement as HTMLElement
+        container
       )
-      this.el.style.display = 'none'
+      this.arg === 'image' && (this.el.style.display = 'none')
     }
   }
 
@@ -94,11 +96,13 @@ export default class ImageManger {
       this.render(this.loading)
     } else {
       const { component: errorComponent, props } = this.loading
+      const container =
+        this.arg === 'image' ? (this.el.parentElement as HTMLElement) : this.el
       render(
         h('div', { class: 'lin-lazy-loading' }, h(errorComponent, props)),
-        this.el.parentElement as HTMLElement
+        container
       )
-      this.el.style.display = 'none'
+      this.arg === 'image' && (this.el.style.display = 'none')
     }
   }
 
@@ -134,10 +138,11 @@ export default class ImageManger {
       this.el._lazy.state = State.LOADED
       this.removeError()
       this.el.style.display = 'block'
-      // this.removeLoading()
+      this.removeLoading()
     } catch (error) {
       this.state = State.ERROR
       this.el._lazy.state = State.ERROR
+      this.removeLoading()
       this.renderError()
     }
   }
