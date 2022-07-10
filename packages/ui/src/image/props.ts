@@ -1,4 +1,4 @@
-import type { PropType } from 'vue'
+import type { PropType, DefineComponent } from 'vue'
 import { pixelPropValidator } from '../utils'
 
 const fitValidator = (fit: string): boolean => {
@@ -45,5 +45,11 @@ export const propsDefine = {
   lazy: {
     type: Boolean,
     default: false,
+  },
+  lazyError: {
+    type: String,
+  },
+  lazyLoading: {
+    type: String,
   },
 }

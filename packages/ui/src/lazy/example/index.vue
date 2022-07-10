@@ -79,7 +79,7 @@ export default defineComponent({
         id: 4,
       },
     ])
-    const imgRefs = ref(list.map((item) => ref()))
+    const imgRefs = ref(list.map((item: any) => ref()))
 
     const changeImage = () => {
       list[3].url = '111'
