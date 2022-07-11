@@ -2,7 +2,11 @@
   <div :class="b()" :style="wrapStyle">
     <img
       v-if="lazy"
-      v-lin-lazy="src"
+      v-lin-lazy="{
+        src,
+        error: lazyError,
+        loading: lazyLoading,
+      }"
       :class="b(`__img`)"
       :alt="alt"
       :style="imgStyle"
