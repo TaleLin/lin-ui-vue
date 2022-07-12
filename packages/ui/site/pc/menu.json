@@ -33,6 +33,12 @@
       "parent": "基础"
     },
     {
+      "title": "col Col",
+      "order": 1,
+      "routePath": "/col",
+      "parent": "基础"
+    },
+    {
       "title": "config-provider config-provider",
       "order": 1,
       "routePath": "/config-provider",
@@ -48,6 +54,12 @@
       "title": "lazy 懒加载",
       "order": 1,
       "routePath": "/lazy",
+      "parent": "基础"
+    },
+    {
+      "title": "row Row",
+      "order": 1,
+      "routePath": "/row",
       "parent": "基础"
     },
     {

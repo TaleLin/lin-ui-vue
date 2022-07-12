@@ -1,0 +1,18 @@
+.generate-col(@i) when (@i =< 24) {
+  .lin-col--span-@{i} {
+    flex: 0 0 @i * (100% / 24);
+  }
+
+  .lin-col--offset-@{i} {
+    margin-left: @i * (100% / 24);
+  }
+
+  .generate-col(@i + 1);
+}
+
+.generate-col(1);
+
+.lin-col{
+  display: block;
+  box-sizing: border-box;
+}

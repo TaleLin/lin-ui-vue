@@ -22,3 +22,7 @@ export const formatPixel = (value: any) => {
   if (typeof value === 'number') return `${value}px`
   return value
 }
+
+export const warn = (component: string | null, content: string) => {
+  console.warn(`${component ? `lin-${component}` : ''}: ${content}`)
+}

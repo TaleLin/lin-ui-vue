@@ -40,6 +40,14 @@ export default [
     },
   },
   {
+    path: '/col',
+    // eslint-disable-next-line prettier/prettier
+    component: () => import('/Users/daipengpeng/works/Lin/lin-ui-vue/packages/ui/src/col/docs/README.md'),
+    meta: {
+      parent: '基础',
+    },
+  },
+  {
     path: '/config-provider',
     // eslint-disable-next-line prettier/prettier
     component: () => import('/Users/daipengpeng/works/Lin/lin-ui-vue/packages/ui/src/config-provider/docs/README.md'),
@@ -67,6 +75,14 @@ export default [
     path: '/lazy',
     // eslint-disable-next-line prettier/prettier
     component: () => import('/Users/daipengpeng/works/Lin/lin-ui-vue/packages/ui/src/lazy/docs/README.md'),
+    meta: {
+      parent: '基础',
+    },
+  },
+  {
+    path: '/row',
+    // eslint-disable-next-line prettier/prettier
+    component: () => import('/Users/daipengpeng/works/Lin/lin-ui-vue/packages/ui/src/row/docs/README.md'),
     meta: {
       parent: '基础',
     },

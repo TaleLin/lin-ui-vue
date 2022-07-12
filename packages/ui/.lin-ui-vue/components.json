@@ -6,5 +6,7 @@
   "config-provider",
   "card",
   "image",
-  "lazy"
+  "lazy",
+  "row",
+  "col"
 ]
