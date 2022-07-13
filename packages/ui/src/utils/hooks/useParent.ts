@@ -1,9 +1,24 @@
-import { getCurrentInstance, inject, onUnmounted, computed, ref } from 'vue'
+import {
+  getCurrentInstance,
+  inject,
+  onUnmounted,
+  computed,
+  ref,
+  ComponentInternalInstance,
+  InjectionKey,
+} from 'vue'
+import { ParentProvide } from './useChildren'
 
-export default function useParent(key: symbol) {
-  const parent: any = inject(key, null)
+// type ParentProvide<T> = T & {
+//   link(child: ComponentInternalInstance): void
+//   unlink(child: ComponentInternalInstance): void
+//   children: ComponentInternalInstance[]
+// }
+
+export default function useParent<T>(key: InjectionKey<ParentProvide<T>>) {
+  const parent = inject(key, null)
   if (parent) {
-    const instance = getCurrentInstance()
+    const instance = getCurrentInstance() as ComponentInternalInstance
     const { link, unlink, children } = parent
 
     const index = computed(() => children.indexOf(instance))

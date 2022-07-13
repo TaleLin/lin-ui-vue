@@ -24,7 +24,7 @@ export default defineComponent({
     const groups = computed(() => {
       const groups: number[][] = [[]]
       let totalSpan = 0
-      cols.forEach((item: any, index: number) => {
+      cols.forEach((item, index: number) => {
         const { span } = item.props
         totalSpan += Number(span)
         if (totalSpan > 24) {
@@ -38,9 +38,9 @@ export default defineComponent({
     })
 
     const spaces = computed(() => {
-      const spaces: any[] = []
+      const spaces: { left?: number; right: number }[] = []
       const gutter = Number(props.gutter)
-      console.log(groups.value)
+
       groups.value.forEach((group) => {
         const averageColPadding = (gutter * (group.length - 1)) / group.length
         group.forEach((col, index) => {
@@ -58,7 +58,6 @@ export default defineComponent({
           }
         })
       })
-      console.log(spaces)
       return spaces
     })
 
