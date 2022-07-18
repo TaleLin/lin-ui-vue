@@ -15,28 +15,31 @@ const globSync = function (pattern: string): Promise<string[]> {
   })
 }
 
-const vNodePath = path.resolve(__dirname, '../src/components')
+const vNodePath = path.resolve(__dirname, '../src/asn')
+const componentPath = path.resolve(__dirname, '../src/components')
 
 const generateIconDemo = (file: string[]) => {
   const iconList: string[] = []
   const importList: string[] = []
 
   file.forEach((item) => {
-    const [, dirName, fileName] =
-      item.match(/\/components\/([-\w]+)\/([-\w]+)\.ts/) || []
+    const [, fileName] = item.match(/\/asn\/([-\w]+)\.ts/) || []
     iconList.push(`<${fileName}></${fileName}>`)
     importList.push(
-      `import ${fileName} from '../../src/components/${dirName}/${fileName}.jsx'`
+      `import ${fileName} from '../../src/components/${fileName}.jsx'`
     )
   })
 
   const template = `import { h, defineComponent } from 'vue'
 ${importList.join('\n')}
+
 const IconDemo = defineComponent({
   render() {
-    return <div>
-      ${iconList.join('\n      ')}
-    </div>
+    return (
+      <div>
+        ${iconList.join('\n        ')}
+      </div>
+    )
   },
 })
 export default IconDemo
@@ -57,7 +60,7 @@ const generateEntry = (components: string[]) => {
   const template = `${importList.join('\n')}
 
 // eslint-disable-next-line prettier/prettier
-const components = [\n  ${componentList.join(',\n  ')}\n]
+const components = [\n  ${componentList.join(',\n  ')},\n]
 const install = function (app) {
   components.forEach((component) => {
     app.component(component.name, component)
@@ -72,18 +75,17 @@ export default {
 }
 
 const generateComponents = async () => {
-  const file = await globSync(`${vNodePath}/**/*.ts`)
+  const file = await globSync(`${vNodePath}/*.ts`)
   const svgComponents: string[] = []
 
   file.forEach((item) => {
-    const [, dirName, fileName] =
-      item.match(/\/components\/([-\w]+)\/([-\w]+)\.ts/) || []
+    const [, fileName] = item.match(/\/asn\/([-\w]+)\.ts/) || []
 
-    svgComponents.push(dirName)
+    svgComponents.push(fileName)
 
     const template = `import { defineComponent } from 'vue'
-import VueIcon from '../../../components/Icon'
-import ${fileName}VNode from './${fileName}'
+import VueIcon from '../../components/Icon'
+import ${fileName}VNode from '../asn/${fileName}'
 
 const ${fileName} = defineComponent({
   name: '${fileName}',
@@ -103,12 +105,12 @@ export default ${fileName}
 `
 
     fs.outputFileSync(
-      path.resolve(vNodePath, `${dirName}/${fileName}.jsx`),
+      path.resolve(vNodePath, `${componentPath}/${fileName}.jsx`),
       template
     )
 
     fs.outputFileSync(
-      path.resolve(vNodePath, `${dirName}/index.jsx`),
+      path.resolve(vNodePath, `${componentPath}/index.jsx`),
       indexTemplate
     )
   })

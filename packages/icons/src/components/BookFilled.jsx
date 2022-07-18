@@ -1,6 +1,6 @@
 import { defineComponent } from 'vue'
-import VueIcon from '../../../components/Icon'
-import BookFilledVNode from './BookFilled'
+import VueIcon from '../../components/Icon'
+import BookFilledVNode from '../asn/BookFilled'
 
 const BookFilled = defineComponent({
   name: 'BookFilled',

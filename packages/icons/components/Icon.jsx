@@ -17,15 +17,31 @@ const Icon = defineComponent({
       type: Object,
       default: () => null,
     },
+    primaryColor: {
+      type: String,
+      default: '#4D82FF',
+    },
+    secondColor: {
+      type: String,
+      default: '#e6f7ff',
+    },
   },
-  render({ icon }) {
-    const { attrs } = icon.vNode
-    const vNode = {
-      ...icon.vNode,
+  render({ icon, primaryColor, secondColor }) {
+    let { vNode } = icon
+
+    if (typeof vNode === 'function') {
+      vNode = vNode(primaryColor, secondColor)
+    }
+
+    const { attrs } = vNode
+    const renderVNode = {
+      ...vNode,
       attrs: { ...attrs, fill: 'currentColor', width: '1em', height: '1em' },
     }
     return (
-      <span class="lin-icon">{icon && generateVNode(vNode, icon.name)}</span>
+      <span class="lin-icon">
+        {icon && generateVNode(renderVNode, icon.name)}
+      </span>
     )
   },
 })

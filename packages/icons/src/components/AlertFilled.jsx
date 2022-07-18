@@ -1,6 +1,6 @@
 import { defineComponent } from 'vue'
-import VueIcon from '../../../components/Icon'
-import AlertFilledVNode from './AlertFilled'
+import VueIcon from '../../components/Icon'
+import AlertFilledVNode from '../asn/AlertFilled'
 
 const AlertFilled = defineComponent({
   name: 'AlertFilled',

@@ -16,7 +16,7 @@ export const generateIcons = ({ theme, from, toDir }: any) => {
         rename((file) => {
           if (file.basename) {
             const name = `${file.basename}-${theme}`
-            file.basename = `${name}/${bigCamel(name)}`
+            file.basename = `${bigCamel(name)}`
             file.extname = '.ts'
           }
         })

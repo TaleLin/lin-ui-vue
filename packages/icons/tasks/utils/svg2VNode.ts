@@ -16,13 +16,32 @@ import {
   __,
   objOf,
   assoc,
+  call,
+  prop,
+  evolve,
+  toPairs,
+  compose,
+  ap,
+  toUpper,
+  join,
+  toLower,
+  apply,
+  flip,
+  replace,
+  zipWith,
 } from 'ramda'
 
 import { createTransformStream } from './createTransformStream'
+import { twoToneIcon } from './twoTone'
 
 const element2VNode: any = ({ theme, name }: any) => {
   return (svgElement: any) => {
     const { name: tag, attributes, children } = svgElement
+
+    if (theme === 'twoTone' && tag === 'path') {
+      attributes.fill = attributes.fill || '#333'
+    }
+
     const res = applyTo({
       tag,
       attrs: clone(attributes),
@@ -53,6 +72,9 @@ export const svg2VNode = function ({ theme }: any) {
         pipe(objOf('vNode'), assoc('name', name), assoc('theme', theme))
       )
     )
+    if (theme === 'twoTone') {
+      return twoToneIcon(res)
+    }
 
     return JSON.stringify(res)
   })
