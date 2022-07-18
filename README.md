@@ -9,7 +9,7 @@ TODO
 
 ## Components
 - [ ] Button
-- [ ] Icon
+- [ ] Icon // TODO
 - [ ] Tag
 - [ ] Image
 - [ ] Row
