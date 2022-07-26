@@ -19,6 +19,7 @@ import { generateEntry } from '../generate/generateEntry'
 import logger from '../utils/logger'
 
 function generateComponentVue(name: string, outputPath: string) {
+  name = name.replace(name.charAt(0), name.charAt(0).toLowerCase()) // confirm name smallCamel
   const res = fs.readFileSync(ComponentTemplateEjs)
   const content = ejs.render(res.toString(), {
     name,

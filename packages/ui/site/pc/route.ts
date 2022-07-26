@@ -40,6 +40,14 @@ export default [
     },
   },
   {
+    path: '/cell',
+    // eslint-disable-next-line prettier/prettier
+    component: () => import('/Users/daipengpeng/works/Lin/lin-ui-vue/packages/ui/src/cell/docs/README.md'),
+    meta: {
+      parent: '基础',
+    },
+  },
+  {
     path: '/col',
     // eslint-disable-next-line prettier/prettier
     component: () => import('/Users/daipengpeng/works/Lin/lin-ui-vue/packages/ui/src/col/docs/README.md'),

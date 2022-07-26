@@ -8,5 +8,6 @@
   "image",
   "lazy",
   "row",
-  "col"
+  "col",
+  "Cell"
 ]

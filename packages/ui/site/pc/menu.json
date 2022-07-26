@@ -33,6 +33,12 @@
       "parent": "基础"
     },
     {
+      "title": "Cell 单元格",
+      "order": 1,
+      "routePath": "/Cell",
+      "parent": "基础"
+    },
+    {
       "title": "col Col",
       "order": 1,
       "routePath": "/col",
