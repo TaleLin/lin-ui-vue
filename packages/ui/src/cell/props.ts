@@ -17,4 +17,10 @@ export const propsDefine = {
     type: Boolean,
     default: false,
   },
+  url: {
+    type: String,
+  },
+  to: {
+    type: [String, Object],
+  },
 }
