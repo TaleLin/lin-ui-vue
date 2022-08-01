@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -18,8 +19,12 @@
   },
   "homepage": "https://github.com/TaleLin/lin-ui-vue#readme",
   "devDependencies": {
+    "@commitlint/cli": "^17.0.3",
+    "@commitlint/config-conventional": "^17.0.3",
     "@lin-ui-vue/eslint-config": "workspace:*",
     "eslint": "^8.17.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^13.0.3",
     "prettier": "^2.7.0",
     "typescript": "^4.7.3"
   }
